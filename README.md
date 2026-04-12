@@ -1,0 +1,2 @@
+# LocalKnowledgePool
+Obsidian Local Knowledge
