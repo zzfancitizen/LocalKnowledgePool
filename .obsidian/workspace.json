@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/mem0aimem0 Universal memory layer for AI Agents.md",
+                "file": "raw/Hermes Agent/002 - Context Files  Hermes Agent.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mem0aimem0 Universal memory layer for AI Agents"
+              "title": "002 - Context Files  Hermes Agent"
             }
           }
         ]
@@ -190,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 695.5
+    "width": 844.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -204,16 +204,43 @@
       "claudian:Open Claudian": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
       "templater-obsidian:Templater": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
   "active": "bf8e5f3ae52d4e36",
   "lastOpenFiles": [
-    "raw/NevaMind-AImemU Memory for 247 proactive agents like openclaw (moltbot, clawdbot)..md",
-    "raw/mem0aimem0 Universal memory layer for AI Agents.md",
-    "README.md",
+    "raw/Hermes Agent/001 - Index.md",
+    "raw/Hermes Agent/004 - Hermes Agent.md",
+    "raw/Hermes Agent/006 - Persistent Memory  Hermes Agent.md",
+    "006 - Persistent Memory.md",
+    "raw/Hermes Agent/005 - Memory Providers  Hermes Agent.md",
+    "raw/Hermes Agent/002 - Context Files  Hermes Agent.md",
+    "raw/Hermes Agent/Persistent Memory  Hermes Agent.md",
+    "raw/Hermes Agent/010 - Tools & Toolsets  Hermes Agent.md",
+    "raw/Hermes Agent/009 - Skins & Themes  Hermes Agent.md",
+    "raw/Hermes Agent/008 - Skills System  Hermes Agent.md",
+    "raw/Hermes Agent/007 - Personality & SOUL.md  Hermes Agent.md",
+    "raw/Hermes Agent/003 - Context References  Hermes Agent.md",
+    "raw/Hermes Agent/Memory Providers  Hermes Agent.md",
+    "raw/Hermes Agent/Index.md",
+    "raw/Hermes Agent/Hermes Agent.md",
+    "raw/Hermes Agent/Context References  Hermes Agent.md",
+    "raw/Hermes Agent/Context Files  Hermes Agent.md",
+    "raw/Hermes Agent/Tools & Toolsets  Hermes Agent.md",
+    "raw/Hermes Agent/Skins & Themes  Hermes Agent.md",
+    "raw/Hermes Agent/Skills System  Hermes Agent.md",
+    "raw/Hermes Agent/Personality & SOUL.md  Hermes Agent.md",
+    "raw/Tools & Toolsets  Hermes Agent.md",
+    "raw/Hermes Agent",
+    "raw/Hermes Agent.md",
+    "raw/Context References  Hermes Agent.md",
+    "raw/Context Files  Hermes Agent.md",
+    "raw/Skins & Themes  Hermes Agent.md",
+    "j.1000-0275.2021.0108.pdf",
     "raw",
-    "欢迎.md",
     "未命名文件夹"
   ]
 }

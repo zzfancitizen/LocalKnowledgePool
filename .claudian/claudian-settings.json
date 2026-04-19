@@ -19,7 +19,7 @@
     "scrollDownKey": "s",
     "focusInputKey": "i"
   },
-  "locale": "en",
+  "locale": "zh-CN",
   "providerConfigs": {
     "claude": {
       "safeMode": "acceptEdits",
@@ -42,9 +42,9 @@
       "reasoningSummary": "detailed",
       "environmentVariables": "",
       "environmentHash": "",
-      "installationMethod": "native-windows",
-      "installationMethodsByHost": {},
-      "wslDistroOverride": "",
+      "installationMethodsByHost": {
+        "zzfancitizendeMacBook-Pro.local": "native-windows"
+      },
       "wslDistroOverridesByHost": {}
     }
   },
