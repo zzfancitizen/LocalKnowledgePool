@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/Hermes Agent/002 - Context Files  Hermes Agent.md",
+                "file": "raw/Testing Agent Skills Systematically with Evals.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "002 - Context Files  Hermes Agent"
+              "title": "Testing Agent Skills Systematically with Evals"
             }
           }
         ]
@@ -190,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 844.5
+    "width": 318.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -210,20 +210,23 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "bf8e5f3ae52d4e36",
+  "active": "378db668e9b741b4",
   "lastOpenFiles": [
-    "raw/Hermes Agent/001 - Index.md",
-    "raw/Hermes Agent/004 - Hermes Agent.md",
-    "raw/Hermes Agent/006 - Persistent Memory  Hermes Agent.md",
-    "006 - Persistent Memory.md",
     "raw/Hermes Agent/005 - Memory Providers  Hermes Agent.md",
-    "raw/Hermes Agent/002 - Context Files  Hermes Agent.md",
-    "raw/Hermes Agent/Persistent Memory  Hermes Agent.md",
+    "raw/Testing Agent Skills Systematically with Evals.md",
+    "raw/mem0aimem0 Universal memory layer for AI Agents.md",
+    "raw/NevaMind-AImemU Memory for 247 proactive agents like openclaw (moltbot, clawdbot)..md",
     "raw/Hermes Agent/010 - Tools & Toolsets  Hermes Agent.md",
     "raw/Hermes Agent/009 - Skins & Themes  Hermes Agent.md",
     "raw/Hermes Agent/008 - Skills System  Hermes Agent.md",
     "raw/Hermes Agent/007 - Personality & SOUL.md  Hermes Agent.md",
+    "raw/Hermes Agent/006 - Persistent Memory  Hermes Agent.md",
+    "raw/Hermes Agent/004 - Hermes Agent.md",
     "raw/Hermes Agent/003 - Context References  Hermes Agent.md",
+    "raw/Hermes Agent/002 - Context Files  Hermes Agent.md",
+    "raw/Hermes Agent/001 - Index.md",
+    "006 - Persistent Memory.md",
+    "raw/Hermes Agent/Persistent Memory  Hermes Agent.md",
     "raw/Hermes Agent/Memory Providers  Hermes Agent.md",
     "raw/Hermes Agent/Index.md",
     "raw/Hermes Agent/Hermes Agent.md",
@@ -236,9 +239,6 @@
     "raw/Tools & Toolsets  Hermes Agent.md",
     "raw/Hermes Agent",
     "raw/Hermes Agent.md",
-    "raw/Context References  Hermes Agent.md",
-    "raw/Context Files  Hermes Agent.md",
-    "raw/Skins & Themes  Hermes Agent.md",
     "j.1000-0275.2021.0108.pdf",
     "raw",
     "未命名文件夹"
