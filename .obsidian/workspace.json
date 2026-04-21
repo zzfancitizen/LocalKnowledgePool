@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/The Complete Guide to Building Skills for Claude.md",
+                "file": "raw/hooks配置.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The Complete Guide to Building Skills for Claude"
+              "title": "hooks配置"
             }
           }
         ]
@@ -210,51 +210,12 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "floating": {
-    "id": "b93b1f76cdda71c7",
-    "type": "floating",
-    "children": [
-      {
-        "id": "eb81303148cb0c86",
-        "type": "window",
-        "children": [
-          {
-            "id": "54591d7d2aaeefc3",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "5b7b61aa2efb6ba6",
-                "type": "leaf",
-                "state": {
-                  "type": "pdf",
-                  "state": {
-                    "file": "The-Complete-Guide-to-Building-Skill-for-Claude.pdf",
-                    "page": 31,
-                    "left": -17,
-                    "top": 42,
-                    "zoom": 0.9176136363636364
-                  },
-                  "icon": "lucide-file-text",
-                  "title": "The-Complete-Guide-to-Building-Skill-for-Claude"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": -1126,
-        "y": 398,
-        "width": 1024,
-        "height": 800,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "378db668e9b741b4",
+  "active": "bf8e5f3ae52d4e36",
   "lastOpenFiles": [
-    "The-Complete-Guide-to-Building-Skill-for-Claude.pdf",
     "raw/The Complete Guide to Building Skills for Claude.md",
+    "raw/hooks配置.md",
+    "raw/tmux.md",
+    "The-Complete-Guide-to-Building-Skill-for-Claude.pdf",
     "raw/Testing Agent Skills Systematically with Evals.md",
     "raw/forrestchangandrej-karpathy-skills A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls..md",
     "raw/Building with extended thinking.md",
@@ -278,7 +239,6 @@
     "raw/Hermes Agent/Context References  Hermes Agent.md",
     "raw/Hermes Agent/Context Files  Hermes Agent.md",
     "raw/Hermes Agent/Tools & Toolsets  Hermes Agent.md",
-    "raw/Hermes Agent/Skins & Themes  Hermes Agent.md",
     "raw/Hermes Agent",
     "j.1000-0275.2021.0108.pdf",
     "raw",
