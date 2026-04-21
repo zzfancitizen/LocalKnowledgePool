@@ -190,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 587.5
+    "width": 644.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -210,16 +210,58 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
+  "floating": {
+    "id": "b93b1f76cdda71c7",
+    "type": "floating",
+    "children": [
+      {
+        "id": "eb81303148cb0c86",
+        "type": "window",
+        "children": [
+          {
+            "id": "54591d7d2aaeefc3",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "5b7b61aa2efb6ba6",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "The-Complete-Guide-to-Building-Skill-for-Claude.pdf",
+                    "page": 31,
+                    "left": -17,
+                    "top": 42,
+                    "zoom": 0.9176136363636364
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "The-Complete-Guide-to-Building-Skill-for-Claude"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": -1126,
+        "y": 398,
+        "width": 1024,
+        "height": 800,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
   "active": "378db668e9b741b4",
   "lastOpenFiles": [
     "The-Complete-Guide-to-Building-Skill-for-Claude.pdf",
     "raw/The Complete Guide to Building Skills for Claude.md",
-    "raw/NevaMind-AImemU Memory for 247 proactive agents like openclaw (moltbot, clawdbot)..md",
-    "raw/forrestchangandrej-karpathy-skills A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls..md",
     "raw/Testing Agent Skills Systematically with Evals.md",
+    "raw/forrestchangandrej-karpathy-skills A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls..md",
+    "raw/Building with extended thinking.md",
+    "raw/Hermes Agent/010 - Tools & Toolsets  Hermes Agent.md",
+    "raw/NevaMind-AImemU Memory for 247 proactive agents like openclaw (moltbot, clawdbot)..md",
     "raw/Hermes Agent/005 - Memory Providers  Hermes Agent.md",
     "raw/mem0aimem0 Universal memory layer for AI Agents.md",
-    "raw/Hermes Agent/010 - Tools & Toolsets  Hermes Agent.md",
     "raw/Hermes Agent/009 - Skins & Themes  Hermes Agent.md",
     "raw/Hermes Agent/008 - Skills System  Hermes Agent.md",
     "raw/Hermes Agent/007 - Personality & SOUL.md  Hermes Agent.md",
@@ -237,7 +279,6 @@
     "raw/Hermes Agent/Context Files  Hermes Agent.md",
     "raw/Hermes Agent/Tools & Toolsets  Hermes Agent.md",
     "raw/Hermes Agent/Skins & Themes  Hermes Agent.md",
-    "raw/Hermes Agent/Skills System  Hermes Agent.md",
     "raw/Hermes Agent",
     "j.1000-0275.2021.0108.pdf",
     "raw",

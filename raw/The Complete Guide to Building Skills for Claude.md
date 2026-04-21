@@ -417,8 +417,6 @@ Result: Campaign created with confirmation link
 **Solution:** [How to fix]
 
 (Add more error cases as needed)
-```
-
 #### Best Practices for Instructions
 
 **Be Specific and Actionable**
