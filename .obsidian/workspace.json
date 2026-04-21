@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/hooks配置.md",
+                "file": "raw/hooks-configuration.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "hooks配置"
+              "title": "hooks-configuration"
             }
           }
         ]
@@ -210,10 +210,11 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "bf8e5f3ae52d4e36",
+  "active": "378db668e9b741b4",
   "lastOpenFiles": [
-    "raw/The Complete Guide to Building Skills for Claude.md",
     "raw/hooks配置.md",
+    "raw/hooks-configuration.md",
+    "raw/The Complete Guide to Building Skills for Claude.md",
     "raw/tmux.md",
     "The-Complete-Guide-to-Building-Skill-for-Claude.pdf",
     "raw/Testing Agent Skills Systematically with Evals.md",
@@ -238,7 +239,6 @@
     "raw/Hermes Agent/Hermes Agent.md",
     "raw/Hermes Agent/Context References  Hermes Agent.md",
     "raw/Hermes Agent/Context Files  Hermes Agent.md",
-    "raw/Hermes Agent/Tools & Toolsets  Hermes Agent.md",
     "raw/Hermes Agent",
     "j.1000-0275.2021.0108.pdf",
     "raw",
