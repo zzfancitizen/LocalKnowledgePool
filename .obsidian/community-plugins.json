@@ -3,5 +3,6 @@
   "obsidian-excalidraw-plugin",
   "templater-obsidian",
   "obsidian-git",
-  "pdf-plus"
+  "pdf-plus",
+  "obsidian-local-rest-api"
 ]
