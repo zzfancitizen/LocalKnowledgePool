@@ -1,0 +1,195 @@
+{
+  "nodes": [
+    {
+      "id": "89bd9637d13dca1a",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# 文档与治理层\n\n包含 README、AGENTS、规则、设计记录和审查文档，解释项目约束与协作方式。\n\nShowing the 18 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/node-633f33|文档与治理层]]"
+    },
+    {
+      "id": "6e8b71dd151a9c03",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/README.md-6e8b71dd.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "bcfeb4d9d15a1e9d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/AGENTS.md-bcfeb4d9.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "a4395e72477ffb15",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/docs-adr-ADR-001-hitl-ticket-pattern-and-known-limits.md-a4395e72.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "ed7ff6f9f5775039",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-CLAUDE.md-ed7ff6f9.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "718d95140c0be96b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-settings.json-718d9514.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "0faa0925679d4473",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-settings.local.json-0faa0925.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "f0a338734d3fab5f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-reviews-code-review-2026-04-03.md-f0a33873.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "fcf308e320ffdc21",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-reviews-code-review-post-fix-2026-04-03.md-fcf308e3.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "ed2267b4fcc3899f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-reviews-logic-contradictions-2026-04-03.md-ed2267b4.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "b524d841307fac4d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-code-review.md-b524d841.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "46d562b8a6bbf5a4",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-code-style.md-46d562b8.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "4c5d26a5a3269ce3",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-llm-discipline.md-4c5d26a5.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "123124d1debc47d6",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-project-structure.md-123124d1.md",
+      "x": 0,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "b6101e5d83285f32",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-python.md-b6101e5d.md",
+      "x": 620,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "0d425126ceffea3b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-testing.md-0d425126.md",
+      "x": 1240,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "96b5d22179ff3c12",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-rules-workflow.md-96b5d221.md",
+      "x": 0,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "4c15f1861c40c800",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-hooks-post-tool.sh-4c15f186.md",
+      "x": 620,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "9fa95257712d7a0d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.claude-plans-joule-response-unification.md-9fa95257.md",
+      "x": 1240,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,135 @@
+{
+  "nodes": [
+    {
+      "id": "9e9fe7ce695fc06b",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# 部署与配置层\n\n定义 Docker、BTP/Kubernetes、CI/CD、模型暴露和运行配置。\n\nShowing the 12 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/node-dc7fa6|部署与配置层]]"
+    },
+    {
+      "id": "a03f956c8cecd62f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/Dockerfile-a03f956c.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f71e8d4130470aec",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app.yaml-f71e8d41.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "103c58b775632302",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/config-mcp_servers.yaml-103c58b7.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "d3c57633fead05e2",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/config-models.yaml-d3c57633.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "09bb729456a264ac",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/Dockerfile-09bb7294.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f9181bd7a3d855b0",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.github-workflows-dev-ci-cd.yml-f9181bd7.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "c794f84134cc6e5d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.dockerignore-c794f841.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "c41ec35056b79c53",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/config-agent_tool_exposure.yaml-c41ec350.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "be16ea81492761a3",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/test-k8s-README.md-be16ea81.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "ad3f2faca69e21b7",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/test-k8s-start-cluster.ps1-ad3f2fac.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "71c36746710a72e1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/test-k8s-stop-cluster.ps1-71c36746.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "46ce62d4ca5c03cb",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/test-k8s-load-balancer.py-46ce62d4.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    }
+  ],
+  "edges": []
+}

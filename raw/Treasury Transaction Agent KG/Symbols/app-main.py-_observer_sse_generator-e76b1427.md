@@ -1,0 +1,32 @@
+---
+title: "_observer_sse_generator"
+tags:
+  - treasury-agent/symbol
+  - understand-anything
+node_type: "function"
+node_id: "function:app/main.py:_observer_sse_generator"
+source_path: "app/main.py"
+---
+
+# _observer_sse_generator
+
+_observer_sse_generator 是 main.py 中的函数，封装该文件在 项目支撑 场景下的一段可复用处理逻辑。
+
+- Type: `function`
+- Parent file: [[Treasury Transaction Agent KG/Files/app-main.py-ad934351|app/main.py]]
+- Layer: [[Treasury Transaction Agent KG/Layers/A2A-473f1c|A2A 入口与协议层]]
+- Complexity: `moderate`
+
+## Tags
+
+- #函数
+- #项目支撑
+
+## Outgoing Symbol Links
+
+- none
+
+## Incoming Symbol Links
+
+- [[Treasury Transaction Agent KG/Files/app-main.py-ad934351|app/main.py]] -> contains
+- [[Treasury Transaction Agent KG/Symbols/app-main.py-observer_events-773f2d9c|app/main.py]] -> calls

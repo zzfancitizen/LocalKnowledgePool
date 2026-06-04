@@ -1,0 +1,724 @@
+{
+  "nodes": [
+    {
+      "id": "a037cea22ca2d080",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# 前端与 Joule 集成层\n\n覆盖本地聊天前端、Joule 能力描述、A2A 布局函数和用户可见展示结构。\n\nShowing the 42 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/Joule-8f7633|前端与 Joule 集成层]]"
+    },
+    {
+      "id": "eecb924cf4ee2498",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-App.jsx-eecb924c.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "c911b75f1ebdd47d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-ChatMessage.jsx-c911b75f.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "2aa9322cc2e46f7d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-functions-layout-display_proposal.yaml-2aa9322c.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "6db179e3428eb4d1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-services-a2aClient.js-6db179e3.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "99159f184b028136",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-logger.js-99159f18.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "575deed107bc9edc",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-logStore.js-575deed1.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5c46a079b9c08451",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-ThinkingSteps.jsx-5c46a079.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "a1b7bc4f72bb051e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-ids.js-a1b7bc4f.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "825803afe5064c24",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-DebugPanel.jsx-825803af.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f1a1ab5da01dde86",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-App.css-f1a1ab5d.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ff3702832d2330e9",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-ChatInput.jsx-ff370283.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "64eb27aa7b7554a5",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-StatusIndicator.jsx-64eb27aa.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "8ef6e55110bc48cb",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-services-observerClient.js-8ef6e551.md",
+      "x": 0,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5ad3d2d5faf16f61",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-parseEnvelope.js-5ad3d2d5.md",
+      "x": 620,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "76a8f4fb73f225ba",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-stepFilter.js-76a8f4fb.md",
+      "x": 1240,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "08498bc131123480",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-svgSanitizer.js-08498bc1.md",
+      "x": 0,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "3d5c14d09f11d032",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-test-k8s-App.multipod.jsx-3d5c14d0.md",
+      "x": 620,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "78cf2be9b61a531f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-test-k8s-PodSwitcher.jsx-78cf2be9.md",
+      "x": 1240,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d2cfeb6e8b823cf0",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-ErrorCard.jsx-d2cfeb6e.md",
+      "x": 0,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "70dc64d6338beaf7",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-ShellBar.jsx-70dc64d6.md",
+      "x": 620,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5e75ea418e821865",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-components-WelcomeBanner.jsx-5e75ea41.md",
+      "x": 1240,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5f0eb509d32f1f69",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-main.jsx-5f0eb509.md",
+      "x": 0,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "1538d61c78f0ae25",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-services-notificationService.js-1538d61c.md",
+      "x": 620,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "730709fc3c09b603",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-src-utils-exportChat.js-730709fc.md",
+      "x": 1240,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "552c156be45058c6",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-test-k8s-main.multipod.jsx-552c156b.md",
+      "x": 0,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "0a33c52b0f7035e4",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-functions-layout-display_change_result.yaml-0a33c52b.md",
+      "x": 620,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "cc2e1cb023faab10",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-functions-layout-display_confirm.yaml-cc2e1cb0.md",
+      "x": 1240,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "95c99eec8ac14b9f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-.claude-settings.local.json-95c99eec.md",
+      "x": 0,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "06f6d5b6d6c3cc75",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-index.html-06f6d5b6.md",
+      "x": 620,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "a720ff06fd33778c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-package.json-a720ff06.md",
+      "x": 1240,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "b1d0f4942724e404",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-test-k8s-index.html-b1d0f494.md",
+      "x": 0,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "6588259655e3f8fc",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-test-k8s-vite.config.multipod.js-65882596.md",
+      "x": 620,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "a44ccd72df7ec84f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-vite.config.js-a44ccd72.md",
+      "x": 1240,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ccc9fb5e8b030044",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/frontend-vitest.config.js-ccc9fb5e.md",
+      "x": 0,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "2627f9bf0c299816",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-capability_context.yaml-2627f9bf.md",
+      "x": 620,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "e42f87f7dd5546ab",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-capability.sapdas.yaml-e42f87f7.md",
+      "x": 1240,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "162ce012aa85f07e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-functions-agent_invoke.yaml-162ce012.md",
+      "x": 0,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "9d15fcd66832389e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-functions-treasury_trans_agent_helper.yaml-9d15fcd6.md",
+      "x": 620,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "bf8648547accbcaf",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-i18n-messages.properties-bf864854.md",
+      "x": 1240,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "8eaeb7977691992e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-scenarios-treasury_trans_agent_helper.yaml-8eaeb797.md",
+      "x": 0,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "06a2f5be2fc7a8e9",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-a2a-scenarios-treasury_trans_agent.yaml-06a2f5be.md",
+      "x": 620,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "485c3b71b17787a7",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/joule-ai_assistants-treasury_assistant-ai_assistant.sapdas.yaml-485c3b71.md",
+      "x": 1240,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "409d9e84715aafd0",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "6db179e3428eb4d1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "3b3fde8e2623177f",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "a1b7bc4f72bb051e",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "c35be2b253c78537",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "76a8f4fb73f225ba",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "2a2ec0707aed7b4f",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "99159f184b028136",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "df373ef6d2728d46",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "730709fc3c09b603",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "9d6fad786ee39c75",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "5ad3d2d5faf16f61",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "696ff4f1579e45d3",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "1538d61c78f0ae25",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "ea509a688e6d7542",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "c911b75f1ebdd47d",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "09b2cae6310900a5",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "ff3702832d2330e9",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "869bb01dbed59ed5",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "64eb27aa7b7554a5",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "18c317b830284310",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "5c46a079b9c08451",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "72eeb0ecb3282325",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "825803afe5064c24",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "4c663e9a990be5c4",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "5e75ea418e821865",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "b2a1a216242a068e",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "70dc64d6338beaf7",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "7ec2c3fe4b96be54",
+      "fromNode": "eecb924cf4ee2498",
+      "toNode": "8ef6e55110bc48cb",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "8b604fcae9ce1fa2",
+      "fromNode": "c911b75f1ebdd47d",
+      "toNode": "5c46a079b9c08451",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "ea92245533edff9b",
+      "fromNode": "c911b75f1ebdd47d",
+      "toNode": "08498bc131123480",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "6fdb294e25069c02",
+      "fromNode": "c911b75f1ebdd47d",
+      "toNode": "d2cfeb6e8b823cf0",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "c808ff23d802945b",
+      "fromNode": "825803afe5064c24",
+      "toNode": "575deed107bc9edc",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "9837a5fcfc4c41e3",
+      "fromNode": "5f0eb509d32f1f69",
+      "toNode": "eecb924cf4ee2498",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "e7258cb86d92ea45",
+      "fromNode": "5f0eb509d32f1f69",
+      "toNode": "f1a1ab5da01dde86",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "d370e9696686f713",
+      "fromNode": "6db179e3428eb4d1",
+      "toNode": "a1b7bc4f72bb051e",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "a004696c2e7a8067",
+      "fromNode": "6db179e3428eb4d1",
+      "toNode": "99159f184b028136",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "1631d389239bcbf6",
+      "fromNode": "8ef6e55110bc48cb",
+      "toNode": "6db179e3428eb4d1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "db01a4151d8ba68d",
+      "fromNode": "8ef6e55110bc48cb",
+      "toNode": "99159f184b028136",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "99971a108e0a5161",
+      "fromNode": "99159f184b028136",
+      "toNode": "575deed107bc9edc",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "9fd27e53cd2b3963",
+      "fromNode": "99159f184b028136",
+      "toNode": "a1b7bc4f72bb051e",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "1d1104956948b1b2",
+      "fromNode": "3d5c14d09f11d032",
+      "toNode": "eecb924cf4ee2498",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "f599dda25904139c",
+      "fromNode": "3d5c14d09f11d032",
+      "toNode": "78cf2be9b61a531f",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "4f0b954e27e35915",
+      "fromNode": "552c156be45058c6",
+      "toNode": "3d5c14d09f11d032",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "ded465a8767b27c5",
+      "fromNode": "552c156be45058c6",
+      "toNode": "f1a1ab5da01dde86",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "680875707ca71bca",
+      "fromNode": "78cf2be9b61a531f",
+      "toNode": "6db179e3428eb4d1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    }
+  ]
+}

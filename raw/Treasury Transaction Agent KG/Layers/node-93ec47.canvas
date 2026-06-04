@@ -1,0 +1,435 @@
+{
+  "nodes": [
+    {
+      "id": "3f33865d0a45c0a0",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# 评测与测试层\n\n覆盖 pytest、前端测试、Aeval 用例和回归场景，用于保护多轮代理行为。\n\nShowing the 42 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/node-93ec47|评测与测试层]]"
+    },
+    {
+      "id": "095f50da1cdc1403",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-changer-test_pending_cross_pod.py-095f50da.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d06ecbd28c04a41e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-supervisor-test_in_process_dispatch.py-d06ecbd2.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "598d344c646fb662",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/aeval-configs-agent-config.yaml-598d344c.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "4a9ac051e11b298f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_mcp_data_access.py-4a9ac051.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f645ef3bc1e43010",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_resolver.py-f645ef3b.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "781d1cfa9a6bb1f3",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_plugin_wiring_integration.py-781d1cfa.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "bbc08ca01cf981cc",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_odata_data_access.py-bbc08ca0.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "57d91e620404d50b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_agent_memory_wiring.py-57d91e62.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "247487277d41c5b4",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_contracts.py-24748727.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "86f58a869f3f82a3",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_in_memory.py-86f58a86.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "54c7f0bb24319e72",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_stub_data_access.py-54c7f0bb.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5897e92fc81c788d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-changer-test_agent.py-5897e92f.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ad4d6dfb70a534dd",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-providers-mcp-test_client.py-ad4d6dfb.md",
+      "x": 0,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "6ebeddd6e89b6963",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-supervisor-test_build_tools_integration.py-6ebeddd6.md",
+      "x": 620,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d7b8a41470f82658",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_mcp_data_access_multi_server.py-d7b8a414.md",
+      "x": 1240,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "925c29867a5c45d6",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-test_memory_isolation.py-925c2986.md",
+      "x": 0,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "987ce6e0757ea1f7",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-providers-mcp-test_server_handle.py-987ce6e0.md",
+      "x": 620,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "81cd9087f6816986",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-runtime-test_external_memory.py-81cd9087.md",
+      "x": 1240,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d3f9f46eb34ad421",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-supervisor-test_prompts.py-d3f9f46e.md",
+      "x": 0,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f193d01910b590ed",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-test_cross_agent_consistency.py-f193d019.md",
+      "x": 620,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "a6daa3dc3986b2d7",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-test_proposal_dispatch_integration.py-a6daa3dc.md",
+      "x": 1240,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "e2f687227cd60bad",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-changer-test_odata_backend.py-e2f68722.md",
+      "x": 0,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "b9232a20c6e33c30",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-changer-test_preview_amount_increase_tool.py-b9232a20.md",
+      "x": 620,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5f05c30bed97d047",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-changer-test_preview_premature_payment_tool.py-5f05c30b.md",
+      "x": 1240,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f978398098d88826",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-changer-test_tools_module.py-f9783980.md",
+      "x": 0,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "b51782e951371658",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-common-test_backend.py-b51782e9.md",
+      "x": 620,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "dee063864c40f688",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-common-test_tools.py-dee06386.md",
+      "x": 1240,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "7b5a1a28f23bc66c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-common-tools-test_python_sandbox_tool.py-7b5a1a28.md",
+      "x": 0,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "c6db4790d03bb972",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-core-test_prompt_utils.py-c6db4790.md",
+      "x": 620,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "44584f86903a5dbc",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-core-test_resilient_tool_node.py-44584f86.md",
+      "x": 1240,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "1750337f18dc8e2a",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-guardrails-test_enforcer.py-1750337f.md",
+      "x": 0,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f5f1a4aa97191408",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-agent_memory-test_context_store.py-f5f1a4aa.md",
+      "x": 620,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ca76c1ec99ef9982",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-plugins-agent_memory-test_plugin.py-ca76c1ec.md",
+      "x": 1240,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ee698deac3fd90cb",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-proposal-test_agent_backend_wiring.py-ee698dea.md",
+      "x": 0,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "4e50624bfeb733e1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-proposal-test_odata_backend.py-4e50624b.md",
+      "x": 620,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "7fc96e3827d0c9be",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-proposal-test_prompts.py-7fc96e38.md",
+      "x": 1240,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "8609d29760bd1b63",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-proposal-test_response_builder.py-8609d297.md",
+      "x": 0,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f9b08376e6a77e6f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-proposal-test_status_logging.py-f9b08376.md",
+      "x": 620,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "93453a65f373557d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-proposal-test_structured_output.py-93453a65.md",
+      "x": 1240,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "05fa48c767e20b6c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-providers-llm-test_config.py-05fa48c7.md",
+      "x": 0,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "3689ef55f5cc4a7a",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-providers-llm-test_router.py-3689ef55.md",
+      "x": 620,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "409483d8bebbec2f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/tests-providers-mcp-test_auth.py-409483d8.md",
+      "x": 1240,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    }
+  ],
+  "edges": []
+}

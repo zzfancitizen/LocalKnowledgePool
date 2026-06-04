@@ -1,0 +1,290 @@
+{
+  "nodes": [
+    {
+      "id": "aa6813eb6934ab45",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# Supervisor 编排层\n\n负责对话状态、业务参数抽取、专家路由、结构化响应封装和流式事件输出。\n\nShowing the 13 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/Supervisor-c86198|Supervisor 编排层]]"
+    },
+    {
+      "id": "4025fc8ad1beda4a",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-agent.py-4025fc8a.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d07c9c6e8a181365",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-types.py-d07c9c6e.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "115337928090377c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-dispatch_contract.py-11533792.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "9c1c8d992f9737b5",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-utils-dispatch_builder.py-9c1c8d99.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "c4c16ed4b21751e8",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-tools-dispatch_tools.py-c4c16ed4.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "9e5ebd0b38255a3f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-utils-providers.py-9e5ebd0b.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "950721c486d1d562",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-prompts.py-950721c4.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "b9a85d61032254ef",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-tools-context_tools.py-b9a85d61.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "0bb61fefe44a73a1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-utils-envelope.py-0bb61fef.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "bf7c54b408d25efd",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-utils-stream_utils.py-bf7c54b4.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d9ab7150c5d79984",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-__init__.py-d9ab7150.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "cbf72c084c6fa939",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-tools-__init__.py-cbf72c08.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "af7afe95961e8af0",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-utils-__init__.py-af7afe95.md",
+      "x": 0,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    }
+  ],
+  "edges": [
+    {
+      "id": "0e2f2afb6a5c4f1a",
+      "fromNode": "d9ab7150c5d79984",
+      "toNode": "4025fc8ad1beda4a",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "7342fa8b90fea2b4",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "115337928090377c",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "2965806971a08e7f",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "950721c486d1d562",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "bfffdc0780f33271",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "9c1c8d992f9737b5",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "b8a2cea780e800a5",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "9e5ebd0b38255a3f",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "c274f6dc00e3ef3e",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "bf7c54b408d25efd",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "e2d4ff98d325881d",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "b9a85d61032254ef",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "1cd2be2be4b8b003",
+      "fromNode": "4025fc8ad1beda4a",
+      "toNode": "0bb61fefe44a73a1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "6571465605ef76c6",
+      "fromNode": "cbf72c084c6fa939",
+      "toNode": "b9a85d61032254ef",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "4aad7c6fcff0fdf0",
+      "fromNode": "cbf72c084c6fa939",
+      "toNode": "c4c16ed4b21751e8",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "ab473e45c9ba8b0c",
+      "fromNode": "c4c16ed4b21751e8",
+      "toNode": "115337928090377c",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "7dea19804442903b",
+      "fromNode": "9c1c8d992f9737b5",
+      "toNode": "115337928090377c",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "4b5551747541efe9",
+      "fromNode": "0bb61fefe44a73a1",
+      "toNode": "d07c9c6e8a181365",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "2ae2c600334bbfd6",
+      "fromNode": "9e5ebd0b38255a3f",
+      "toNode": "115337928090377c",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "bbf1a3a5a1ce4753",
+      "fromNode": "9e5ebd0b38255a3f",
+      "toNode": "c4c16ed4b21751e8",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "0f7bcf0cecd8b48c",
+      "fromNode": "bf7c54b408d25efd",
+      "toNode": "0bb61fefe44a73a1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    }
+  ]
+}

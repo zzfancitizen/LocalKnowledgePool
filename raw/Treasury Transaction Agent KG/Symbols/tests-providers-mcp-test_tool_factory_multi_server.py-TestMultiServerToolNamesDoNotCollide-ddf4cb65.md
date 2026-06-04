@@ -1,0 +1,31 @@
+---
+title: "TestMultiServerToolNamesDoNotCollide"
+tags:
+  - treasury-agent/symbol
+  - understand-anything
+node_type: "class"
+node_id: "class:tests/providers/mcp/test_tool_factory_multi_server.py:TestMultiServerToolNamesDoNotCollide"
+source_path: "tests/providers/mcp/test_tool_factory_multi_server.py"
+---
+
+# TestMultiServerToolNamesDoNotCollide
+
+TestMultiServerToolNamesDoNotCollide 是 test_tool_factory_multi_server.py 中的类，组织 测试 相关状态与行为，包含 3 个方法。
+
+- Type: `class`
+- Parent file: [[Treasury Transaction Agent KG/Files/tests-providers-mcp-test_tool_factory_multi_server.py-baf1d5e5|tests/providers/mcp/test_tool_factory_multi_server.py]]
+- Layer: [[Treasury Transaction Agent KG/Layers/node-93ec47|评测与测试层]]
+- Complexity: `moderate`
+
+## Tags
+
+- #类
+- #测试
+
+## Outgoing Symbol Links
+
+- none
+
+## Incoming Symbol Links
+
+- [[Treasury Transaction Agent KG/Files/tests-providers-mcp-test_tool_factory_multi_server.py-baf1d5e5|tests/providers/mcp/test_tool_factory_multi_server.py]] -> contains

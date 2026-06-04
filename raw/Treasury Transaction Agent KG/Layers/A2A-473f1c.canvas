@@ -1,0 +1,85 @@
+{
+  "nodes": [
+    {
+      "id": "6344c09d717815fb",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# A2A 入口与协议层\n\n接收 SAP Joule/A2A 请求，建立 Agent Card、任务执行器和对外协议边界。\n\nShowing the 6 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/A2A-473f1c|A2A 入口与协议层]]"
+    },
+    {
+      "id": "ad9343510846077d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-main.py-ad934351.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "87c591ede75badc0",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-agent_executor.py-87c591ed.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5ff068739dc7ac03",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/.well-known-agent.json-5ff06873.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "c5ba6438004f6490",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-ord-agent.json-c5ba6438.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "11cb3c9331439754",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-ord-document-system-instance.json-11cb3c93.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "c091abb34f647a49",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-ord-document-system-version.json-c091abb3.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "573cd5378635714d",
+      "fromNode": "ad9343510846077d",
+      "toNode": "87c591ede75badc0",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    }
+  ]
+}

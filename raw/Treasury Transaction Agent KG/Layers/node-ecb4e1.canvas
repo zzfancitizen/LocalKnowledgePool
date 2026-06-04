@@ -1,0 +1,778 @@
+{
+  "nodes": [
+    {
+      "id": "c6707b6c8e0542f5",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# 运行时基础层\n\n提供上下文存储、LLM 路由、插件解析、MCP/OData/记忆后端和通用运行时支撑。\n\nShowing the 42 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/node-ecb4e1|运行时基础层]]"
+    },
+    {
+      "id": "3a0d27074f3a9f80",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-resolver.py-3a0d2707.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d759664aea2b1c28",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-llm-router.py-d759664a.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "0674d9bb0bb1ade2",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-context_store.py-0674d9bb.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5e57af7f210c34ed",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-skill_loader.py-5e57af7f.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "0db25f5919ee0d69",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-agent.py-0db25f59.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "f978cafdc8656171",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-guardrails-enforcer.py-f978cafd.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "042a0a4b20d2b8aa",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-contracts.py-042a0a4b.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "9a1132b25072552b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-client.py-9a1132b2.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "650ac986ca4c11d1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-observability.py-650ac986.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "8d54c66fd5d02325",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-tool_schema.py-8d54c66f.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "639e463cb5f5c307",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-destination.py-639e463c.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "e45e1a33ebb153d8",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-in_memory.py-e45e1a33.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "cea6f6f762d1ff0f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-guardrails-types.py-cea6f6f7.md",
+      "x": 0,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "3480326161fafa4b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-mcp_data_access.py-34803261.md",
+      "x": 620,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d59585f9fc0f8278",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-config.py-d59585f9.md",
+      "x": 1240,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ffde7d805ad83a61",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-server_handle.py-ffde7d80.md",
+      "x": 0,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5ef526400d02fd53",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-odata-errors.py-5ef52640.md",
+      "x": 620,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "7fb3b648611fbae5",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-tool_registry.py-7fb3b648.md",
+      "x": 1240,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "eac8ca0612f1d23b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-prompt_utils.py-eac8ca06.md",
+      "x": 0,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "00d0e35eec9a599d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-token_usage.py-00d0e35e.md",
+      "x": 620,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "67955bfd4c716c9b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-agent_memory-context_store.py-67955bfd.md",
+      "x": 1240,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "489123f145cfbcc4",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-odata_data_access.py-489123f1.md",
+      "x": 0,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "931d833ce2d0861f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-llm-types.py-931d833c.md",
+      "x": 620,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d341e3fef2fc8048",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-errors.py-d341e3fe.md",
+      "x": 1240,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "01bd0b07193ba5b6",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-agent_memory-client.py-01bd0b07.md",
+      "x": 0,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "3b8741f364f60e31",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-agent_memory-hybrid_checkpointer.py-3b8741f3.md",
+      "x": 620,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "864ac9a78907370b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-odata-params.py-864ac9a7.md",
+      "x": 1240,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "67079dcea3cc887d",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-checkpoint_eviction.py-67079dce.md",
+      "x": 0,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "fac2cca76d2f162e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-agent_memory-plugin.py-fac2cca7.md",
+      "x": 620,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "26659b47980f1c6c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-stub_data_access.py-26659b47.md",
+      "x": 1240,
+      "y": 2700,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "1e32a7aaab185912",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-auth.py-1e32a7aa.md",
+      "x": 0,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "a18fab8ee664a52e",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-message_trim.py-a18fab8e.md",
+      "x": 620,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "581933351b08b06c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-agent_memory-__init__.py-58193335.md",
+      "x": 1240,
+      "y": 3000,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "ecad45b051d92e50",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-mcp-tool_factory.py-ecad45b0.md",
+      "x": 0,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "19fdfc80e9558bc0",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-odata-http_helpers.py-19fdfc80.md",
+      "x": 620,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "d869e38cc8318920",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-plugins-agent_memory-evictor.py-d869e38c.md",
+      "x": 1240,
+      "y": 3300,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "4db7a115dfee05f1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-providers-llm-config.py-4db7a115.md",
+      "x": 0,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "913372164f712f98",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-agent_card.py-91337216.md",
+      "x": 620,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "6262656f0317e6c0",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-dedup.py-6262656f.md",
+      "x": 1240,
+      "y": 3600,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "5bbb018dceae1b66",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-push_notification.py-5bbb018d.md",
+      "x": 0,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "91553aace564ea08",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-core-resilient_tool_node.py-91553aac.md",
+      "x": 620,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "39d3f9315ccc49b2",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-ord.py-39d3f931.md",
+      "x": 1240,
+      "y": 3900,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    }
+  ],
+  "edges": [
+    {
+      "id": "90c73f39f8df28cd",
+      "fromNode": "67079dcea3cc887d",
+      "toNode": "650ac986ca4c11d1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "2b0dad755edefcb6",
+      "fromNode": "650ac986ca4c11d1",
+      "toNode": "00d0e35eec9a599d",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "5fa9bb6079507509",
+      "fromNode": "5bbb018dceae1b66",
+      "toNode": "650ac986ca4c11d1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "0b7ee33f0bf0e34b",
+      "fromNode": "f978cafdc8656171",
+      "toNode": "cea6f6f762d1ff0f",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "dae27d18dee516fa",
+      "fromNode": "581933351b08b06c",
+      "toNode": "fac2cca76d2f162e",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "5dba94f724d97fbf",
+      "fromNode": "67955bfd4c716c9b",
+      "toNode": "01bd0b07193ba5b6",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "d3680f3dcb7456a8",
+      "fromNode": "d869e38cc8318920",
+      "toNode": "01bd0b07193ba5b6",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "830d2a74def5baba",
+      "fromNode": "3b8741f364f60e31",
+      "toNode": "01bd0b07193ba5b6",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "06286b4b1c720136",
+      "fromNode": "fac2cca76d2f162e",
+      "toNode": "01bd0b07193ba5b6",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "fc22db3f8239954f",
+      "fromNode": "fac2cca76d2f162e",
+      "toNode": "67955bfd4c716c9b",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "92831ca089da0846",
+      "fromNode": "fac2cca76d2f162e",
+      "toNode": "d869e38cc8318920",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "cb73308d84c75638",
+      "fromNode": "fac2cca76d2f162e",
+      "toNode": "3b8741f364f60e31",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "21f19fe6918990f6",
+      "fromNode": "fac2cca76d2f162e",
+      "toNode": "042a0a4b20d2b8aa",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "0903199133f56a99",
+      "fromNode": "e45e1a33ebb153d8",
+      "toNode": "67079dcea3cc887d",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "b45d8cfdf5ce8dda",
+      "fromNode": "e45e1a33ebb153d8",
+      "toNode": "042a0a4b20d2b8aa",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "d1d092d9856c0f11",
+      "fromNode": "e45e1a33ebb153d8",
+      "toNode": "0674d9bb0bb1ade2",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "e59d751acbfacd5d",
+      "fromNode": "3480326161fafa4b",
+      "toNode": "9a1132b25072552b",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "9ea69623a105088d",
+      "fromNode": "3480326161fafa4b",
+      "toNode": "d59585f9fc0f8278",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "beaeaf8217b443b6",
+      "fromNode": "3480326161fafa4b",
+      "toNode": "639e463cb5f5c307",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "abcbf46871964bcf",
+      "fromNode": "3480326161fafa4b",
+      "toNode": "ffde7d805ad83a61",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "3bc44cfd5a55495f",
+      "fromNode": "3480326161fafa4b",
+      "toNode": "8d54c66fd5d02325",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "0a933b164d6a7be1",
+      "fromNode": "3a0d27074f3a9f80",
+      "toNode": "042a0a4b20d2b8aa",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "17c96420b3a8f697",
+      "fromNode": "4db7a115dfee05f1",
+      "toNode": "931d833ce2d0861f",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "309494d6cbaa113b",
+      "fromNode": "d759664aea2b1c28",
+      "toNode": "650ac986ca4c11d1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "432cd12a13e9612f",
+      "fromNode": "d759664aea2b1c28",
+      "toNode": "4db7a115dfee05f1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "74fc696a1f49ab07",
+      "fromNode": "d759664aea2b1c28",
+      "toNode": "931d833ce2d0861f",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "3cb1917c6392b9ac",
+      "fromNode": "1e32a7aaab185912",
+      "toNode": "639e463cb5f5c307",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "6a4da38aa3bf40c5",
+      "fromNode": "9a1132b25072552b",
+      "toNode": "1e32a7aaab185912",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "9ec6b280c801454e",
+      "fromNode": "9a1132b25072552b",
+      "toNode": "d341e3fef2fc8048",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "19e4ad46b7eec27d",
+      "fromNode": "9a1132b25072552b",
+      "toNode": "8d54c66fd5d02325",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "9d960cbdbe8c6dba",
+      "fromNode": "ffde7d805ad83a61",
+      "toNode": "1e32a7aaab185912",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "59298053b5432c7f",
+      "fromNode": "ffde7d805ad83a61",
+      "toNode": "9a1132b25072552b",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "2273e0136a2e9020",
+      "fromNode": "ffde7d805ad83a61",
+      "toNode": "d59585f9fc0f8278",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "5f645bf0ea1e1aea",
+      "fromNode": "ffde7d805ad83a61",
+      "toNode": "639e463cb5f5c307",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "718fb21b058777b3",
+      "fromNode": "ffde7d805ad83a61",
+      "toNode": "ecad45b051d92e50",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "ba5e11aa4607da79",
+      "fromNode": "ffde7d805ad83a61",
+      "toNode": "8d54c66fd5d02325",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "b82a3136e545a4f7",
+      "fromNode": "ecad45b051d92e50",
+      "toNode": "9a1132b25072552b",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    },
+    {
+      "id": "336c650a7646bc41",
+      "fromNode": "ecad45b051d92e50",
+      "toNode": "8d54c66fd5d02325",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "imports"
+    }
+  ]
+}

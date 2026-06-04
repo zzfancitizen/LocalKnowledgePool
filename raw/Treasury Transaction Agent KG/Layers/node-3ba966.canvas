@@ -1,0 +1,275 @@
+{
+  "nodes": [
+    {
+      "id": "223cd7e06451b380",
+      "type": "text",
+      "x": 0,
+      "y": -360,
+      "width": 1280,
+      "height": 240,
+      "color": "4",
+      "text": "# 技能与提示词层\n\n保存 agent 可加载的技能正文、参考材料和业务操作指南，约束专家行为。\n\nShowing the 26 most connected or tour-relevant file-level nodes. Full layer note: [[Treasury Transaction Agent KG/Layers/node-3ba966|技能与提示词层]]"
+    },
+    {
+      "id": "b070f726d0adfb8f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-amount-increase-references-field_mapping.md-b070f726.md",
+      "x": 0,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "0435badadff79c20",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-premature-references-field_mapping.md-0435bada.md",
+      "x": 620,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "dfa57a69a239a3d4",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-skills-request-dispatch-references-dispatch_targets.md-dfa57a69.md",
+      "x": 1240,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "65692dc301f6d171",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-amount-increase-references-mcp_request_template.md-65692dc3.md",
+      "x": 0,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "ed58cd9f1f8d9013",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-amount-increase-references-odata_filter_template.md-ed58cd9f.md",
+      "x": 620,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "67fdf5fa17a1dd30",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-amount-increase-references-scenarios.md-67fdf5fa.md",
+      "x": 1240,
+      "y": 300,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "fa32a470dfa00eb6",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-premature-references-mcp_request_template.md-fa32a470.md",
+      "x": 0,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "66543b79f6298a7c",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-premature-references-odata_filter_template.md-66543b79.md",
+      "x": 620,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "a21ee323c3723d68",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-premature-references-scenarios.md-a21ee323.md",
+      "x": 1240,
+      "y": 600,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "2b4b77dd86cfc37f",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-skills-request-dispatch-references-followup_resolution.md-2b4b77dd.md",
+      "x": 0,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "5a11248381c85262",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-skills-request-dispatch-references-normalized_request_examples.md-5a112483.md",
+      "x": 620,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "de0933b5e1cf2217",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-changer-skills-change-amount-increase-references-amount_increase_change_guidance.md-de0933b5.md",
+      "x": 1240,
+      "y": 900,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "f439824d7232a0fc",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-changer-skills-change-amount-increase-references-mcp_v4_read.md-f439824d.md",
+      "x": 0,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "659021426bb72336",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-changer-skills-change-amount-increase-SKILL.md-65902142.md",
+      "x": 620,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "3f6e770d55917330",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-changer-skills-change-premature-references-mcp_v4_read.md-3f6e770d.md",
+      "x": 1240,
+      "y": 1200,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "5b26e608ed105b3b",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-changer-skills-change-premature-references-premature_change_guidance.md-5b26e608.md",
+      "x": 0,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "24810d2613fefc43",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-changer-skills-change-premature-SKILL.md-24810d26.md",
+      "x": 620,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "79beb52c5397d520",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-common-skills-business-cases-references-amount_increase.md-79beb52c.md",
+      "x": 1240,
+      "y": 1500,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "a070cea1b9ce2f30",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-common-skills-business-cases-references-premature.md-a070cea1.md",
+      "x": 0,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "65d111eacf81c0e1",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-common-skills-business-cases-SKILL.md-65d111ea.md",
+      "x": 620,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "ea6b17b6de46edde",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-common-skills-grill-me-SKILL.md-ea6b17b6.md",
+      "x": 1240,
+      "y": 1800,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "181a83e4e1465f91",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-common-skills-python-sandbox-references-python_sandbox.md-181a83e4.md",
+      "x": 0,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "98b5ecc2a1c55713",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-common-skills-python-sandbox-SKILL.md-98b5ecc2.md",
+      "x": 620,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "08677f62e57bc165",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-amount-increase-SKILL.md-08677f62.md",
+      "x": 1240,
+      "y": 2100,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "eeb15d2839154457",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-proposal-skills-propose-premature-SKILL.md-eeb15d28.md",
+      "x": 0,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "b78c636c93668733",
+      "type": "file",
+      "file": "Treasury Transaction Agent KG/Files/app-supervisor-skills-request-dispatch-SKILL.md-b78c636c.md",
+      "x": 620,
+      "y": 2400,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    }
+  ],
+  "edges": []
+}

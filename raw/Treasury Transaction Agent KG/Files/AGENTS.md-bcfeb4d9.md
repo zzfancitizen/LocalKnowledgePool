@@ -1,0 +1,36 @@
+---
+title: "AGENTS.md"
+tags:
+  - treasury-agent/file
+  - understand-anything
+node_type: "document"
+node_id: "document:AGENTS.md"
+source_path: "AGENTS.md"
+---
+
+# AGENTS.md
+
+AGENTS.md 是项目支撑相关文档，说明该项目在这一部分的背景、约束或操作方式。
+
+- Type: `document`
+- Layer: [[Treasury Transaction Agent KG/Layers/node-633f33|文档与治理层]]
+- Complexity: `simple`
+- Source: [source](/Users/zzfancitizen/MyProjects/TreasuryTransactionAgent-v1-fix-hitl-confirm-ticket-gate/AGENTS.md)
+
+## Tags
+
+- #文档
+- #agent
+- #项目支撑
+
+## Outgoing Links
+
+- none
+
+## Incoming Links
+
+- none
+
+## Contained Symbols
+
+- none
