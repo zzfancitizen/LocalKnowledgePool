@@ -43,7 +43,8 @@
       "environmentVariables": "",
       "environmentHash": "",
       "installationMethodsByHost": {
-        "zzfancitizendeMacBook-Pro.local": "native-windows"
+        "zzfancitizendeMacBook-Pro.local": "native-windows",
+        "W-PF5H2JAQ": "native-windows"
       },
       "wslDistroOverridesByHost": {}
     }
