@@ -1,0 +1,965 @@
+---
+title: "SAP Open Resource Discovery"
+source: "https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1"
+author:
+published:
+created: 2026-05-13
+description: "Notational Conventions"
+tags:
+  - "clippings"
+---
+## Notational Conventions
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+
+## Specification Overview
+
+The following diagram provides a high-level overview of how the ORD specification is structured. Click on the elements to navigate to the corresponding sections.
+
+## ORD Roles
+
+The ORD specification consists of several [parts](#ord-parts). Depending on the role of the adopter, only some parts of the specification are relevant and need to be implemented.
+
+Please note that ORD roles are not exclusive. A [system type](#system-type) can implement multiple roles, e.g. an ORD Consumer MAY also be an ORD Provider.
+
+### ORD Provider
+
+An **ORD provider** is a system instance (of an application or service) that exposes ORD information for self-description. The **provider role** applies to business applications/services that want to describe themselves ([described system instance](#described-system-instance)).
+
+#### Described System Instance
+
+A **described system instance** is a system instance that is being described by an ORD provider.
+
+> ℹ In theory, it is also possible to describe other system instances "on behalf". In this case, the ORD provider system instance is not necessarily identical to the described system instances (see [`describedSystemInstance`](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#ord-document_describedsysteminstance) property). For example, an ORD Provider could pre-aggregate information from multiple system instances and then describe them in one place via multiple ORD documents. Whether this is supported, depends on the ORD aggregator.
+
+An ORD provider MUST implement the [ORD Provider API](#ord-provider-api), which entails providing an [ORD configuration endpoint](#ord-configuration-endpoint) and [ORD document(s)](#ord-document). An ORD provider MUST use one of the standardized [ORD transport modes](#ord-transport-modes) for the ORD documents. Depending on the overall architecture, it MUST integrate with specific [ORD aggregators](#ord-aggregator).
+
+> 📖 See also: [How To Adopt ORD as a Provider](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/help/faq/adopt-ord-as-provider).
+
+![ORD Provider Role](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzE0NCIgaGVpZ2h0PSI5NzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9Ijc0MiIgeT0iMTE0MCIgd2lkdGg9IjMxNDQiIGhlaWdodD0iOTcyIi8+PC9jbGlwUGF0aD48Y2xpcFBhdGggaWQ9ImNsaXAxIj48cGF0aCBkPSJNMTY4MC45OCAxMzI1LjM0IDE3MzkuMzUgMTQyNi40NCAxNjQxLjc0IDE0ODIuNzkgMTU4My4zNyAxMzgxLjY5WiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L2NsaXBQYXRoPjxjbGlwUGF0aCBpZD0iY2xpcDIiPjxwYXRoIGQ9Ik0xNjgwLjk4IDEzMjUuMzQgMTczOS4zNSAxNDI2LjQ0IDE2NDEuNzQgMTQ4Mi43OSAxNTgzLjM3IDEzODEuNjlaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvY2xpcFBhdGg+PGNsaXBQYXRoIGlkPSJjbGlwMyI+PHBhdGggZD0iTTE2ODAuOTggMTMyNS4zNCAxNzM5LjM1IDE0MjYuNDQgMTY0MS43NCAxNDgyLjc5IDE1ODMuMzcgMTM4MS42OVoiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTc0MiAtMTE0MCkiPjxwYXRoIGQ9Ik0yNjAxLjA0IDE2NTkuNSAyNjAxLjA0IDIwMzIuNDJDMjYwMS4wNCAyMDM1LjU4IDI1OTguNDcgMjAzOC4xNSAyNTk1LjMxIDIwMzguMTVMMTcwMi4xNSAyMDM4LjE1IDE3MDIuMTUgMjAyNi42OSAyNTk1LjMxIDIwMjYuNjkgMjU4OS41OCAyMDMyLjQyIDI1ODkuNTggMTY1OS41Wk0xNzA3Ljg3IDIwNDkuNjEgMTY3My41IDIwMzIuNDIgMTcwNy44NyAyMDE1LjIzWiIvPjxyZWN0IHg9Ijc2MCIgeT0iMTE0MCIgd2lkdGg9IjEyNzYiIGhlaWdodD0iOTcyIiBmaWxsPSIjRjJGMkYyIi8+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI4MyIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSA3OTIuMjQ4IDEyNDYpIj5TeXN0ZW0gTGFuZHNjYXBlPC90ZXh0PjxyZWN0IHg9IjIyODEuNSIgeT0iMTUyNC41IiB3aWR0aD0iNjYwIiBoZWlnaHQ9IjE1MyIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjkuMTY2NjciIHN0cm9rZS1taXRlcmxpbWl0PSI4IiBmaWxsPSIjRjJGMkYyIi8+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI1MCIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAyMzEzLjcgMTU5OCkiPk9SRCBEb2N1bWVudChzKTwvdGV4dD48cmVjdCB4PSIyMjY1LjUiIHk9IjE1MDcuNSIgd2lkdGg9IjY2MCIgaGVpZ2h0PSIxNTIiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI5LjE2NjY3IiBzdHJva2UtbWl0ZXJsaW1pdD0iOCIgZmlsbD0iI0YyRjJGMiIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTUiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMjI5Ny4zNiAxNTg2KSI+T1JEIERvY3VtZW50PC90ZXh0Pjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMjE0NS4zNiAxNTQwKSI+MC4ubjwvdGV4dD48cGF0aCBkPSJNMTE1My41IDE2NjUgMTI5Ni43NSAxMzc4LjUgMTY2MC4yNSAxMzc4LjUgMTgwMy41IDE2NjUgMTY2MC4yNSAxOTUxLjUgMTI5Ni43NSAxOTUxLjVaIiBzdHJva2U9IiMwMDhGRDMiIHN0cm9rZS13aWR0aD0iOS4xNjY2NyIgc3Ryb2tlLW1pdGVybGltaXQ9IjgiIGZpbGw9IiNDM0VDRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjx0ZXh0IGZpbGw9IiMwMDQ3NjkiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iOTIiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTMyNS4xMiAxNjQ0KSI+U3lzdGVtIDwvdGV4dD48dGV4dCBmaWxsPSIjMDA0NzY5IiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjkyIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDEzMDQuNzkgMTc1NCkiPkluc3RhbmNlPC90ZXh0PjxyZWN0IHg9IjIyNjUuNSIgeT0iMTI4NC41IiB3aWR0aD0iNjYwIiBoZWlnaHQ9IjE1MiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjkuMTY2NjciIHN0cm9rZS1taXRlcmxpbWl0PSI4IiBmaWxsPSIjRjJGMkYyIi8+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI1NSIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAyMjk3LjM2IDEzNjMpIj5PUkQgQ29uZmlndXJhdGlvbjwvdGV4dD48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjMyIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDIyOTcuMzYgMTQwNykiPigud2VsbDwvdGV4dD48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjMyIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDIzNzEuODQgMTQwNykiPi08L3RleHQ+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSIzMiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAyMzgyLjcyIDE0MDcpIj5rbm93biBDb25maWd1cmF0aW9uIFVSSSk8L3RleHQ+PHBhdGggZD0iTTEuNzI2NTItNS40NjI4MyA0NTMuNjM3IDEzNy4zNjMgNDUwLjE4NCAxNDguMjg4LTEuNzI2NTIgNS40NjI4M1pNNDUxLjYyNyAxMjQuNzEgNDc5LjIyNCAxNTEuNDU4IDQ0MS4yNjggMTU3LjQ4N1oiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDE3ODYuNSAxNTExLjk2KSIvPjxwYXRoIGQ9Ik0xNzg3LjM1IDE1MDUuODMgMjIzOC4yNCAxNTczLjA4IDIyMzYuNTUgMTU4NC40MSAxNzg1LjY1IDE1MTcuMTdaTTIyMzQuMjYgMTU2MC45IDIyNjUuNzIgMTU4Mi45NyAyMjI5LjE5IDE1OTQuOVoiLz48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjUwIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDIxNzEuMjEgMTM1NykiPjE8L3RleHQ+PHBhdGggZD0iTTI2MjIuMjggMTg4OC41IDI2MjIuMjggMjAzNC4yOEMyNjIyLjI4IDIwMzcuNDUgMjYxOS43MSAyMDQwLjAxIDI2MTYuNTUgMjA0MC4wMUwxNjU5LjUgMjA0MC4wMUMxNjU2LjM0IDIwNDAuMDEgMTY1My43NyAyMDM3LjQ1IDE2NTMuNzcgMjAzNC4yOEwxNjUzLjc3IDE5ODAuNDMgMTY2NS4yMyAxOTgwLjQzIDE2NjUuMjMgMjAzNC4yOCAxNjU5LjUgMjAyOC41NSAyNjE2LjU1IDIwMjguNTUgMjYxMC44MiAyMDM0LjI4IDI2MTAuODIgMTg4OC41Wk0xNjQyLjMxIDE5ODYuMTYgMTY1OS41IDE5NTEuNzggMTY3Ni42OSAxOTg2LjE2WiIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMjAwNi41NyAxOTkzKSI+ZGVzY3JpYmVzPC90ZXh0PjxwYXRoIGQ9Ik0yOTI1LjUgMTM1NC43NyAzMDA4IDEzNTQuNzdDMzAxMS4xNiAxMzU0Ljc3IDMwMTMuNzMgMTM1Ny4zNCAzMDEzLjczIDEzNjAuNUwzMDEzLjczIDE1ODMuNDNDMzAxMy43MyAxNTg2LjU5IDMwMTEuMTYgMTU4OS4xNiAzMDA4IDE1ODkuMTZMMjk1OC43MyAxNTg5LjE2IDI5NTguNzMgMTU3Ny43IDMwMDggMTU3Ny43IDMwMDIuMjcgMTU4My40MyAzMDAyLjI3IDEzNjAuNSAzMDA4IDEzNjYuMjMgMjkyNS41IDEzNjYuMjNaTTI5NjQuNDYgMTYwMC42MSAyOTMwLjA4IDE1ODMuNDMgMjk2NC40NiAxNTY2LjI0WiIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMzAyNS44OCAxNDU0KSI+cmVmZXJlbmNlcyBPUkQgZG9jdW1lbnRzIDwvdGV4dD48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjUwIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDMwMjUuODggMTUxNSkiPmFuZCBob3cgdG8gYWNjZXNzIHRoZW08L3RleHQ+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI1MCIgdHJhbnNmb3JtPSJtYXRyaXgoMC45NjA0NDEgLTAuMjc4NDgyIDAuMjc4NDgyIDAuOTYwNDQxIDE5MjAuMDMgMTQzNSkiPnByb3ZpZGVzPC90ZXh0Pjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTAiIHRyYW5zZm9ybT0ibWF0cml4KDAuODc0MTczIDAuNDg1NjE0IC0wLjQ4NTYxNCAwLjg3NDE3MyAxOTM4LjUzIDE1NzMpIj5wcm92aWRlczwvdGV4dD48cmVjdCB4PSIyMjg2LjUiIHk9IjE3MzUuNSIgd2lkdGg9IjY2MCIgaGVpZ2h0PSIxNTMiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI5LjE2NjY3IiBzdHJva2UtbWl0ZXJsaW1pdD0iOCIgZmlsbD0iI0YyRjJGMiIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMjMxOC44IDE4MDkpIj5PUkQgRG9jdW1lbnQocyk8L3RleHQ+PHJlY3QgeD0iMjI3MC41IiB5PSIxNzE4LjUiIHdpZHRoPSI2NjAiIGhlaWdodD0iMTUyIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iOS4xNjY2NyIgc3Ryb2tlLW1pdGVybGltaXQ9IjgiIGZpbGw9IiNGMkYyRjIiLz48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjU1IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDIzMDIuNDYgMTc5NykiPlJlc291cmNlIERlZmluaXRpb25zPC90ZXh0PjxwYXRoIGQ9Ik0yOTI1LjUgMTU3Ny43NyAzMDA4LjY0IDE1NzcuNzdDMzAxMS44MSAxNTc3Ljc3IDMwMTQuMzcgMTU4MC4zNCAzMDE0LjM3IDE1ODMuNUwzMDE0LjM3IDE3OTQuNDRDMzAxNC4zNyAxNzk3LjYgMzAxMS44MSAxODAwLjE3IDMwMDguNjQgMTgwMC4xN0wyOTU5LjI1IDE4MDAuMTcgMjk1OS4yNSAxNzg4LjcxIDMwMDguNjQgMTc4OC43MSAzMDAyLjkxIDE3OTQuNDQgMzAwMi45MSAxNTgzLjUgMzAwOC42NCAxNTg5LjIzIDI5MjUuNSAxNTg5LjIzWk0yOTY0Ljk4IDE4MTEuNjIgMjkzMC42IDE3OTQuNDQgMjk2NC45OCAxNzc3LjI1WiIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNTAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMzAyNS44OCAxNjg2KSI+cmVmZXJlbmNlcyByZXNvdXJjZSA8L3RleHQ+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI1MCIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAzMDI1Ljg4IDE3NDcpIj5kZWZpbml0aW9uczwvdGV4dD48cGF0aCBkPSJNMTc4OS4zOSAxNTA2LjU1IDIyNDguOTcgMTc3NC41MyAyMjQzLjIgMTc4NC40MyAxNzgzLjYxIDE1MTYuNDVaTTIyNDkuNzkgMTc2MS43NCAyMjcwLjgzIDE3OTMuOSAyMjMyLjQ3IDE3OTEuNDRaIi8+PHRleHQgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI1MCIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAyMTQ4Ljc5IDE3MDYpIj4wLi5uPC90ZXh0PjxwYXRoIGQ9Ik0xNjc5LjIxIDEzMzEuNjQgMTg0My43MSAxNjE2LjU4IDE3NTIuNSAxNjY5LjI0IDE1ODggMTM4NC4zWiIgZmlsbD0iIzAwOEZEMyIgZmlsbC1ydWxlPSJldmVub2RkIi8+PGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAxKSI+PGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAyKSI+PGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAzKSI+PHBhdGggZD0iTTE2NzYuMjQgMTM5Mi40MUMxNjc3LjA1IDEzOTIuMDkgMTY3Ny44NSAxMzkxLjcgMTY3OC42MiAxMzkxLjI1IDE2NzguNjQgMTM5MS4yNCAxNjc4LjY3IDEzOTEuMjMgMTY3OC42OSAxMzkxLjIxTDE2ODEuMTkgMTM5NS41NUMxNjgxLjE3IDEzOTUuNTYgMTY4MS4xNSAxMzk1LjU3IDE2ODEuMTMgMTM5NS41OCAxNjgwLjM1IDEzOTYuMDMgMTY3OS42MiAxMzk2LjUzIDE2NzguOTMgMTM5Ny4wN0wxNjc2LjI0IDEzOTIuNDFaTTE2NTQuMzcgMTM4Ni42MiAxNjY4LjI2IDEzNzguNiAxNjc2LjI0IDEzOTIuNDFDMTY2OC40OSAxMzk1LjU1IDE2NTkuNTQgMTM5My4xOCAxNjU0LjM3IDEzODYuNjJaTTE2NDkuNjggMTM4OS4zMyAxNjU0LjM3IDEzODYuNjJDMTY1My44MSAxMzg1LjkyIDE2NTMuMyAxMzg1LjE3IDE2NTIuODMgMTM4NC4zN0wxNjY2LjkgMTM3Ni4yNCAxNjY5LjI2IDEzNzQuODggMTY3MC42MiAxMzc3LjI0IDE2NzguNjkgMTM5MS4yMUMxNjg3LjY3IDEzODUuOTggMTY5MC43NCAxMzc0LjQ2IDE2ODUuNTQgMTM2NS40NCAxNjgwLjMyIDEzNTYuNCAxNjY4Ljc3IDEzNTMuMzEgMTY1OS43MyAxMzU4LjUyIDE2NTAuNjkgMTM2My43NCAxNjQ3LjYgMTM3NS4zIDE2NTIuODEgMTM4NC4zMyAxNjUyLjgyIDEzODQuMzUgMTY1Mi44MyAxMzg0LjM2IDE2NTIuODMgMTM4NC4zN0wxNjQ4LjUgMTM4Ni44N0MxNjQ4LjQ5IDEzODYuODYgMTY0OC40OCAxMzg2Ljg1IDE2NDguNDggMTM4Ni44NCAxNjQzLjI2IDEzNzcuOCAxNjMxLjcgMTM3NC43IDE2MjIuNjcgMTM3OS45MiAxNjEzLjYzIDEzODUuMTQgMTYxMC41MyAxMzk2LjY5IDE2MTUuNzUgMTQwNS43MyAxNjIwLjk3IDE0MTQuNzcgMTYzMi41MiAxNDE3Ljg2IDE2NDEuNTYgMTQxMi42NSAxNjQxLjU4IDE0MTIuNjMgMTY0MS42IDE0MTIuNjIgMTY0MS42MyAxNDEyLjYxTDE2NTIuMjQgMTQzMC45OSAxNjUzLjYgMTQzMy4zNCAxNjU1Ljk1IDE0MzEuOTggMTY3NC4yMyAxNDIxLjQzQzE2NzkuNDYgMTQzMC40NCAxNjkwLjk5IDE0MzMuNTIgMTcwMC4wMiAxNDI4LjMxIDE3MDkuMDYgMTQyMy4wOSAxNzEyLjE1IDE0MTEuNTQgMTcwNi45NCAxNDAyLjUgMTcwMS43MyAxMzkzLjQ4IDE2OTAuMjIgMTM5MC4zOCAxNjgxLjE5IDEzOTUuNTVMMTY4OS4zIDE0MDkuNTkgMTY5MC42NiAxNDExLjk1IDE2ODguMyAxNDEzLjMgMTY3NC4yMyAxNDIxLjQzQzE2NzQuMjIgMTQyMS40MiAxNjc0LjIyIDE0MjEuNDEgMTY3NC4yMSAxNDIxLjM5IDE2NzMuNzYgMTQyMC42MSAxNjczLjM2IDE0MTkuOCAxNjczLjAzIDE0MTguOThMMTY4Ni45NCAxNDEwLjk1IDE2NzguOTMgMTM5Ny4wN0MxNjcyLjMxIDE0MDIuMjMgMTY2OS45IDE0MTEuMiAxNjczLjAzIDE0MTguOThMMTY1NC41OSAxNDI5LjYzIDE2NDMuODggMTQxMS4wN0MxNjUwLjM4IDE0MDUuOTEgMTY1Mi43NSAxMzk3LjA0IDE2NDkuNjggMTM4OS4zM1pNMTY0My44OCAxNDExLjA3QzE2NDMuMTcgMTQxMS42MyAxNjQyLjQyIDE0MTIuMTUgMTY0MS42MyAxNDEyLjYxTDE2MzMuNTYgMTM5OC42NCAxNjMyLjIgMTM5Ni4yOCAxNjM0LjU1IDEzOTQuOTIgMTY0OC41IDEzODYuODdDMTY0OC45NiAxMzg3LjY3IDE2NDkuMzUgMTM4OC40OSAxNjQ5LjY4IDEzODkuMzNMMTYzNS45MSAxMzk3LjI4IDE2NDMuODggMTQxMS4wN1oiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0xNjQxLjg3IDE0NDAuMDZDMTY0NS41OSAxNDQ2LjUgMTY1My44MiAxNDQ4LjcxIDE2NjAuMjYgMTQ0NC45OSAxNjY2LjY5IDE0NDEuMjcgMTY2OC45IDE0MzMuMDQgMTY2NS4xOCAxNDI2LjYxIDE2NjEuNDcgMTQyMC4xNyAxNjUzLjI0IDE0MTcuOTcgMTY0Ni44IDE0MjEuNjggMTY0MC4zNiAxNDI1LjQgMTYzOC4xNiAxNDMzLjYzIDE2NDEuODcgMTQ0MC4wNlpNMTYzNy4xNiAxNDQyLjc4QzE2NDIuMzggMTQ1MS44MiAxNjUzLjk0IDE0NTQuOTIgMTY2Mi45NyAxNDQ5LjcgMTY3Mi4wMSAxNDQ0LjQ4IDE2NzUuMTEgMTQzMi45MyAxNjY5Ljg5IDE0MjMuODkgMTY2NC42NyAxNDE0Ljg1IDE2NTMuMTIgMTQxMS43NiAxNjQ0LjA4IDE0MTYuOTcgMTYzNS4wNCAxNDIyLjE5IDE2MzEuOTUgMTQzMy43NSAxNjM3LjE2IDE0NDIuNzhaIiBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48cGF0aCBkPSJNMTY1My45NiAxNDU0LjExIDE2NTAuNjUgMTQ2Ni4wMiAxNjQwLjU4IDE0NjMuMjggMTY0My44OSAxNDUxLjM3IDE2NTMuOTYgMTQ1NC4xMVoiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0xNjYwLjUzIDE0NDAuMDJDMTY1OS41OSAxNDM5LjY0IDE2NTguNzYgMTQzOC45NSAxNjU4LjIzIDE0MzggMTY1Ni45OCAxNDM1Ljc3IDE2NTcuNzcgMTQzMi45NSAxNjU5Ljk5IDE0MzEuNyAxNjYwLjkyIDE0MzEuMTkgMTY2MS45NCAxNDMxLjAyIDE2NjIuOTEgMTQzMS4xNiAxNjYyLjcxIDE0MzAuMyAxNjYyLjM4IDE0MjkuNDYgMTY2MS45MyAxNDI4LjY1IDE2NTkuMzIgMTQyNCAxNjUzLjQyIDE0MjIuMzQgMTY0OC43NyAxNDI0Ljk1IDE2NDQuMTEgMTQyNy41NyAxNjQyLjQ2IDE0MzMuNDYgMTY0NS4wNyAxNDM4LjEyIDE2NDcuNjggMTQ0Mi43NyAxNjUzLjU4IDE0NDQuNDMgMTY1OC4yMyAxNDQxLjgxIDE2NTkuMTEgMTQ0MS4zMiAxNjU5Ljg4IDE0NDAuNzIgMTY2MC41MyAxNDQwLjAyWiIgZmlsbD0iI0ZGRkZGRiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9nPjwvZz48L2c+PHRleHQgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSIzMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC41IDAuODY2MDI1IC0wLjg2NjAyNSAwLjUgMTcyNi43NSAxNTA0KSI+T1JEIDwvdGV4dD48dGV4dCBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjMyIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjUgMC44NjYwMjUgLTAuODY2MDI1IDAuNSAxNjY1Ljc2IDE0NzcpIj5Qcm92aWRlciBBUEk8L3RleHQ+PC9nPjwvc3ZnPg== "ORD Provider Role")
+
+### ORD Aggregator
+
+An **ORD aggregator** is a system that collects, aggregates, and proxies the ORD information from multiple [ORD providers](#ord-provider). It reflects the combined information on the ORD providers that it aggregates. The aggregator itself MAY represent a [static perspective](#static-perspective) or a [dynamic perspective](#dynamic-perspective), or both.
+
+The ORD information MUST be made available to [ORD Consumers](#ord-consumer) through a higher-quality API, for example via an [ORD Discovery API](#ord-discovery-api) that allows for more advanced consumption patterns.
+
+An ORD aggregator MUST ensure that information that has `visibility` of `private` or `internal` is not made available to consumers that don't have the corresponding permissions to get such information (e.g. external consumers). If ORD consumers get private or internal information, they inherit the responsibility of protecting it.
+
+There are [aggregation rules](#aggregation-rules) and [validation rules](#validation-rules) that an ORD aggregator MUST implement and [ORD Consumers](#ord-consumer) MAY hold to.
+
+It MUST support all [ORD transport modes](#ord-transport-modes) that are used by the systems it aggregates.
+
+When serving static perspective requests (`system-type` or `system-version`), the aggregator SHOULD follow the [static perspective resolution](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/perspectives#static-perspective-resolution) algorithm.
+
+In case of an ORD aggregator that supports the [dynamic perspective](#dynamic-perspective):
+
+- the aggregator MUST support [system-instance-aware](#system-instance-aware) information and MAY support further [system instance](#system-instance) grouping concepts, such as accounts etc.
+- If it needs to reflect system-instance-aware information it MUST be system-instance-aware itself.
+- In the ORD Discovery API for accessing `system-instance` perspective information, the aggregator MUST implement a fallback to the static perspective.
+	- Concretely: If an ORD Provider describes an ORD resource only via perspective: `system-version` and not via `system-instance`, the aggregator still needs to return the static ORD resource description, even when the request was to learn about the state of a specific system instance. The reason is that the ORD Discovery consumer should not need to understand whether the information is currently static or system-instance-aware. Consumers should also not have to consult two APIs and ask for both the static and dynamic perspective and be forced to merge both together.
+- See chapter on [perspectives](#perspectives) and the [perspectives concept page](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/perspectives) for details.
+- It SHOULD support the proposed optimizations for the transport modes, e.g. make use of `perspectives` (replaces deprecated `systemInstanceAware`), `lastUpdate` properties and support the proposed HTTP cache mechanisms. This has the potential to significantly reduce overall TCO.
+
+![ORD Aggregator Role](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/assets/images/ord-role-aggregator-44449f97b43852cec0567191ba92bf27.svg "ORD Aggregator Role")
+
+### ORD Consumer
+
+An **ORD consumer** is an actor or a system that needs to retrieve ORD information.
+
+ORD can either be consumed from a single [ORD provider](#ord-provider) (a system instance) or from an [ORD aggregator](#ord-aggregator). The latter is RECOMMENDED, because it provides more information and a higher quality of access.
+
+If the consumer gets the information from an [ORD aggregator](#ord-aggregator), it will be provided through an [ORD Discovery API](#ord-discovery-api).
+
+If the consumer gets the information from an [ORD provider](#ord-provider), it will be received as an [ORD document](#ord-document) via one of the implemented [transport modes](#ord-transport-modes).
+
+An ORD consumer that receives information with a `visibility` of `private` or `internal` inherits the responsibility of the ORD aggregator to protect the information. The ORD consumer MUST ensure that private and internal information is not exposed to consumers without the corresponding permissions. If the ORD consumer only needs public information, it SHOULD only request those from the ORD aggregator in the first place.
+
+![ORD Consumer Role](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/assets/images/ord-role-consumer-efb91047dc3f27d9bd10594b13d4cfaf.svg "ORD Consumer Role")
+
+## ORD Transport Modes
+
+The specification makes a distinction between how [ORD information](#ord-information) is expressed (say, as an [ORD document](#ord-document)) and how it is transported.
+
+An [ORD Provider](#ord-provider) MUST implement at least one of the defined transport modes. If the ORD information is [system-instance-aware](#system-instance-aware), the implementation of the transport mode MUST support providing it **per system instance**.
+
+### Pull Transport
+
+In pull transport mode, [ORD information](#ord-information) is made available through a simple REST API that exposes [ORD documents](#ord-document) via `GET` endpoints.
+
+This is implemented by providing an [ORD Provider API](#ord-provider-api).
+
+##### Pull Transport - Pros
+
+- Simple REST implementation
+- ORD Provider does not need to know the ORD Aggregators
+- Decentralized approach
+- Each system provides the ORD information directly
+
+##### Pull Transport - Cons
+
+- Periodic pulling leads to many requests (efficiency)
+- Periodic pulling may result in slow information updates. For some use cases it might be critical to get updates as soon as possible.
+- No direct feedback channel for validation errors from an ORD aggregator
+
+##### Pull Transport Sequence Diagram
+
+![Pull Transport Sequence](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/assets/images/ord-pull-transport-sequence-cc614a31b6c6e2254084bd7ca2c90839.svg "Pull Transport Sequence")
+
+### Other Modes of Transport
+
+Other modes of transport have not yet been standardized/specified. They are only listed here to outline potential modes that we anticipate.
+
+#### Import Transport
+
+Manual import of the [ORD document](#ord-document) as a JSON file into an interested system or tool (offline mode):
+
+- The system instances do not need to know each other or be integrated in any way
+- The ORD document alone is sufficient for this type of consumption
+- All URLs in the document MUST be resolvable (e.g. through `baseUrl` or full URLs)
+
+#### Push Transport
+
+> 🚧 The specification currently does not cover this mode.
+
+The Document can be pushed to the interested ORD aggregator, e.g. via a webhook, a known HTTP POST endpoint, or via file upload.
+
+- Every system instance needs to know where the ORD documents need to be pushed to.
+- An ORD aggregator might provide a dedicated HTTP POST endpoint for this.
+- Changes can be pushed faster and more efficiently compared to the [pull transport](#pull-transport).
+- The specification currently does not cover this mode.
+
+#### Event-Driven Transport
+
+> 🚧 The specification currently does not cover this mode.
+
+Event-driven transport uses a publish/subscribe or a distributed log pattern.
+
+## ORD Parts
+
+The ORD specification consists of several parts. Depending on the role of the adopter, only some parts of the specification are relevant and need to be implemented.
+
+### ORD Document
+
+#### Overview
+
+The ORD document is a standardized, technology agnostic and machine-readable document that provides a high-level description of the resources (such as APIs and Events) of a **system instance**. The document itself is just a wrapper format to transport the actual ORD information. It is notated and distributed in the [JSON format](https://www.json.org/json-en.html) and can be [transported in various ways](#ord-transport-modes).
+
+#### ORD Document Content
+
+The ORD document MUST be a valid [JSON](https://www.json.org/json-en.html) document with [UTF-8](https://en.wikipedia.org/wiki/UTF-8) encoding. It MUST NOT exceed 2MB in size to ensure efficient transport and processing. If content exceeds this limit, split the information into multiple ORD documents.
+
+The interfaces are described in [ORD document interface](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document), including [examples](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/examples).
+
+An ORD document MUST be compliant with the following [JSON Schema](https://json-schema.org/) definition: [Document.schema.json](https://open-resource-discovery.org/spec-v1/interfaces/Document.schema.json).
+
+Internationalization and localization are not supported natively in ORD documents. It is therefore RECOMMENDED to use American English for human-readable titles and descriptions.
+
+#### ORD Document Data Model (Simplified)
+
+![High-Level ORD Entities (simplified)](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/assets/images/ord-high-level-data-model.drawio-e32e8af7e9f81d4705b5ee9de4978a42.svg "High-Level ORD Entities (simplified)")
+
+#### Considerations on the ORD Content
+
+The ORD documents MUST describe the current state of a concrete, running [system instance](#system-instance).
+
+All resources that are described within one document MUST describe the same system instance.
+
+The described information MUST not be duplicated within or across ORD documents of the same [system type](#system-type). If some information like Package or Consumption Bundle is needed across multiple documents they can either be put in one of the documents or be moved to a separate document for shared information. This also applies across ORD Providers of the same system type, which is ensured through the correct use of namespaces and namespace ownerships. Shared ORD information MAY be published by multiple system types when the ORD ID identifies the same governed definition. This commonly uses an [authority namespace](#authority-namespace), but can also reuse another system type's namespace when that system type owns the definition. See [Shared Taxonomy, Resources and Contracts](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/shared-resources).
+
+The [validation rules](#validation-rules) MUST be considered.
+
+If the [resources](#resource) that are described through ORD are [system-instance-aware](#system-instance-aware) (they differ between system instances), the ORD document MUST reflect this. In that case, one ORD document MUST be provided for each system instance. Only if the information is [system-instance-unaware](#system-instance-unaware) (the system behaves the same for each instance), a single ORD document can represent the system as a whole.
+
+Differences between system instances are possible, for example, when the system has configuration or extensibility capabilities that result in resources being activated, deactivated, added, or modified. This might happen at config time, deploy time, or even at run-time.
+
+For example, a configuration could explicitly disable an API. In this case, the ORD document for this specific system instance MUST not describe the disabled API. Some systems are even extensible in a way that customers can add new APIs or alter existing APIs at run-time. Those changes MUST be documented via ORD. Please note that some changes only affect the referenced [resource definitions](#resource-definition) and not the ORD document itself. However, the change in the resource definition MUST be indicated through a version increment (see [Version and Lifecycle](#version-and-lifecycle)).
+
+#### Considerations on the Granularity of ORD Documents
+
+- MUST be split if multiple [system namespaces](#system-namespace) or even system instances are described. At least one ORD document MUST be created for each, as the ORD document is scoped to describe a specific system type (static) or instance (dynamic).
+- MUST be split if different [perspectives](#perspectives) are described, as one document can only describe one perspective.
+- MUST be split when they become too big in size (MUST not exceed 2 MB).
+- MAY be split according to lifecycle and ownership concerns (e.g. all customer or partner created resources together).
+- MAY be split according to team autonomy boundaries / bounded contexts / domains.
+- MAY be split to optimize retrieval and cache handling.
+
+#### ORD Information Reuse
+
+To avoid repeating too much information, ORD provides some limited means for information reuse on [document level](#document-level-inheritance) and [package level](#package-level-inheritance).
+
+Which attributes support information reuse and how it works is described in the [ORD Document interface documentation](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document) and the [ORD Aggregator Content Enrichment and Preservation](#content-enrichment-and-preservation) section.
+
+##### Document Level Inheritance
+
+Some ORD information is described on the document root level and applies to all information that the ORD Document contains. In some cases (like `policyLevel`), it is also possible to override the values locally.
+
+##### Package Level Inheritance
+
+Some ORD information is described on Package level and inherited down to all resources that are assigned to it. The information on Package level is merged into resource level, but can be overridden locally at resource level.
+
+> Please note that Package level inheritance might not always have the right granularity, as putting resources into Packages can have a different motivation / cut than the reuse. In this case, the information need to be defined on resource level individually, leading to some information duplication. For ORD 2.0 we consider removing Package level inheritance, potentially replacing it with a more flexible approach.
+
+#### ORD Document Content Extensions
+
+Some properties only have a fixed set of allowed values. In many cases they allow setting this to `custom`. The actual value is then provided through an accompanying property, such as `customType`, which has no restrictions (but also no agreed-upon semantics).
+
+Additional information or categorization can be added through the generic `Label` concept, which is available for most ORD information.
+
+If such custom values or labels are relied upon by more than one application or team, they SHOULD be standardized through ORD. Please [create an issue](https://github.com/open-resource-discovery/specification/issues) to request this.
+
+### ORD Provider API
+
+This section details how an [ORD Provider](#ord-provider) exposes one or multiple [ORD documents](#ord-document) for the [pull transport mode](#pull-transport).
+
+The ORD Provider MUST implement a RESTful API that provides an [ORD configuration endpoint](#ord-configuration-endpoint) and at least one [ORD document endpoint](#ord-document-endpoint).
+
+The API contract is defined as an [OpenAPI 3 Definition](https://open-resource-discovery.org/spec-v1/interfaces/DocumentAPI.oas3.yaml). The definition contains the well-known ORD configuration endpoint and one exemplary document endpoint.
+
+#### ORD Configuration Endpoint
+
+The ORD configuration endpoint is the single entry point for the discovery.
+
+The motivation behind the ORD configuration endpoint is to:
+
+- Define which version(s) and capabilities of the ORD standard are currently supported by the [system instance](#system-instance).
+- Define where and how the ORD information can be accessed
+	- Which transport mode is available (URLs to ORD document(s) indicate the [pull transport mode](#pull-transport))
+		- Which [access strategies](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-extensions/access-strategies) are available
+
+The idea behind the configuration endpoint is inspired by the [well-known URI](https://datatracker.ietf.org/doc/html/rfc8615) discovery mechanism.
+
+> Some applications on the Web require the discovery of information about an origin \[[RFC6454](https://datatracker.ietf.org/doc/html/rfc6454)\] (sometimes called "site-wide metadata") before making a request.
+> 
+> [https://datatracker.ietf.org/doc/html/rfc8615#section-1](https://datatracker.ietf.org/doc/html/rfc8615#section-1)
+
+##### Provider Implementation
+
+The [ORD configuration endpoint](#ord-configuration-endpoint) MUST be implemented by [ORD Providers](#ord-provider) and be accessible via an HTTP GET request.
+
+The response MUST be a valid UTF-8 encoded [JSON](https://www.json.org/json-en.html) document that is returned with the `application/json;charset=UTF-8` content type and the HTTP Status Code `200`.
+
+- The response MUST not contain any sensitive information or leak tenant-specific information.
+- It MUST be compliant with the following [JSON Schema](https://json-schema.org/) definition: [Configuration.schema.json](https://open-resource-discovery.org/spec-v1/interfaces/Configuration.schema.json).
+- Please refer to the [interface documentation](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Configuration) for more details.
+
+All of the [common REST characteristics](#common-rest-characteristics) MUST be met. The rules on [ORD Provider Cache Handling](#ord-provider-cache-handling) apply.
+
+It is RECOMMENDED to make this endpoint public.
+
+It is RECOMMENDED use the fixed [Well-Known URI](https://tools.ietf.org/html/rfc8615#section-3) `/.well-known/open-resource-discovery` (as registered [here](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)) that is relative to the system instance's [base URL](#base-url).
+
+Since the ORD config does not contain any tenant-specific information, it is RECOMMENDED to only provide one ORD configuration endpoint for one [system deployment](#system-deployment) (same [base URL](#base-url)) of a multi-tenant application.
+
+This assumes that the ORD document URLs in the configuration are not different per tenant and the tenant ID is selected as part of the access strategy. If the application is single-tenant or the tenant ID is part of the base URL (for example in the domain name), each tenant / system instance will have their own ORD config endpoint as a consequence.
+
+If the ORD configuration endpoint is either customized or protected, the information where to find and access the ORD config endpoint MUST be made available to all ORD consumers and aggregators and will be a prerequisite for the ORD discovery. This could be implemented either through explicit solutions like a central system registry or through established conventions.
+
+If the ORD configuration endpoint is customized, the ORD configuration response MUST either use absolute URLs or provide the `baseUrl`.
+
+#### ORD Document Endpoint
+
+The ORD document endpoint provides an [ORD document](#ord-document) via [pull transport](#pull-transport). An [ORD Provider](#ord-provider) MUST implement one ORD document endpoint for each ORD document it exposes.
+
+##### Provider Implementation
+
+The content of an [ORD document](#ord-document) MUST be made available via an HTTP GET request and be returned with the `application/json;charset=UTF-8` MIME type and the HTTP Status Code `200`.
+
+All of the [common REST characteristics](#common-rest-characteristics) MUST be met.
+
+If the ORD document is [system-instance-aware](#system-instance-aware) (different between system instances), the ORD document endpoint MUST ensure that the response describes the correct/chosen instance specifically. This can be implemented, for example, via authentication (multi tenancy) or by having different URLs per system instance. In this case, the ORD documents MUST be provided and fetched for *each* system instance. For more details, please see the [considerations on the ORD content](#considerations-on-the-ord-content) section.
+
+The rules for [ORD Provider Cache Handling](#ord-provider-cache-handling) apply.
+
+###### select Parameter
+
+The ORD Provider API MAY implement an optional `?select` HTTP query parameter, that the ORD Aggregator can pass to reduce the result set of the ORD Config and ORD Documents requests / aggregation run.
+
+The availability of this feature MUST be announced through the [ORD Configuration](#ord-configuration-endpoint), via `capabilities.selector` set to `true`.
+
+If supported, the [ORD Configuration](#ord-configuration-endpoint) and the [ORD Document](#ord-document-endpoint) endpoint gain an optional query parameter `?select=<ORD ID>` where the value MUST be a valid [ORD ID](#ord-id). When given, the ORD Provider only returns the requested ORD Resource, but MAY also add related ORD information that need to be updated in the same transaction (the decision is on the provider).
+
+The Aggregator will follow the regular ORD crawling run by invoking the ORD Configuration endpoint and from there the ORD documents and attached [resource definitions](#resource-definition). There is no reason to pass the parameters to the resource definition requests. The aggregator is allowed to send a `select` request on the config endpoint, but if the `select` capability is not advertised MUST NOT proceed with `select` requests on the ORD documents.
+
+```markdown
+GET http://example.com/.well-known/open-resource-discovery?select=sap.foo:dataProduct:astronomy:v1
+Content-Type: application/json
+```
+
+The resulting ORD config MUST only return the ORD document(s) that contain the results from the select query (to avoid unnecessary requests). The aggregator will then request each listed document with the same `?select` parameter.
+
+The ORD provider MUST return the following error codes (see [error handling](#error-handling)):
+
+- `500 Internal Server Error` if the given ORD ID format is invalid
+- `404 Not Found` if the ORD ID is valid but no matching resource exists
+```markdown
+GET http://example.com/ord/document-1?select=sap.foo:dataProduct:astronomy:v1
+Content-Type: application/json
+```
+
+The response contains the requested resource and MAY include related ORD information that need to be updated together, e.g. when a data product is requested, it could also return its output ports API resources. Returning Tombstones is out of scope.
+
+#### Resource Definitions
+
+[ORD resources](#ord-resource) like APIs and Events reference [resource definitions](#resource-definition), which are machine-readable documents that describe the resource's interface in detail. These use industry-standard formats such as [OpenAPI](https://www.openapis.org/), [AsyncAPI](https://www.asyncapi.com/), JSON Schema, or WSDL.
+
+ORD does not aim to replace these standards. Instead, it discovers and transports them alongside shared metadata. The ORD layer adds common properties (like `version`, `visibility`, `releaseStatus`), [taxonomy](#ord-taxonomy) (via `Package`, `Product`, etc.), and relationships between resources.
+
+For details on how resource definitions are referenced, see the `resourceDefinitions` property on [API Resource](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#api-resource) and [Event Resource](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#event-resource) in the interface documentation. When consumed via an [ORD aggregator](#ord-aggregator), the aggregator may [host the resource definitions](#hosting-resource-definitions) for easier access.
+
+#### Consumer Perspective
+
+An [ORD consumer](#ord-consumer) MUST first consult the [ORD configuration endpoint](#ord-configuration-endpoint). The response will indicate the supported version(s) of ORD, the URLs of the exposed [ORD documents](#ord-document), and additional information that has implications for accessing the information. The ORD documents may contain links to metadata definitions and how to access them.
+
+The most important rules are:
+
+- The consumer MUST NOT make any fixed assumptions on the ORD document endpoint paths.
+- The consumer MUST download the [ORD configuration](#ord-configuration-endpoint), [ORD documents](#ord-document) and the referenced metadata definitions via HTTP GET requests.
+- It is RECOMMENDED to add `Accept: application/json` to all request headers when requesting ORD config and documents.
+- The rules for [ORD Consumer Cache Handling](#ord-consumer-cache-handling) apply.
+
+#### Cache Handling
+
+##### ORD Provider Cache Handling
+
+The GET endpoints MUST provide a [`Cache-Control`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) HTTP header defining the caching behavior. It is RECOMMENDED to also provide an [`ETag`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) HTTP header with the corresponding [`304`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304) (Not Modified) response behavior.
+
+If an ORD resource, or any of its referenced resource definitions, has changed, the `version` of the affected resource MUST be updated/incremented. The `ETag` header value on the document REST response will implicitly be updated as a consequence.
+
+##### ORD Consumer Cache Handling
+
+An arbitrary [ORD consumer](#ord-consumer) MAY implement the following cache handling rules to optimize frequent access. An [ORD aggregator](#ord-aggregator) MUST implement the cache handling rules in order to reduce unnecessary load on the ORD providers.
+
+The `Cache-Control` and `ETag` headers (as described in [ORD Provider Cache Handling](#ord-provider-cache-handling)) MUST be respected and correctly implemented from the client's side.
+
+Referenced definition files MUST only be fetched if they have not been retrieved yet or the `version` has been incremented since the last retrieval.
+
+ORD documents and ORD resources that have been marked as [system-instance-aware](#system-instance-aware) MUST each be fetched per tenant. If they are [system-instance-unaware](#system-instance-unaware) they SHOULD only be fetched once per system.
+
+### ORD Aggregation
+
+This section covers the aggregation rules and validations for [ORD aggregators](#ord-aggregator).
+
+[ORD Consumers](#ord-consumer) that retrieve information from an aggregator MAY rely on the outlined rules.
+
+#### Aggregation Rules
+
+One of the responsibilities of an [ORD aggregator](#ord-aggregator) is to combine the ORD information from multiple system instances. When information from many different system instances comes together, some situations may arise that need to be resolved through clearly defined rules.
+
+##### Merging ORD information
+
+This section outlines the rules of how ORD information is merged and - if conflicts arise - how they are resolved.
+
+First, the distinction between [ORD taxonomy](#ord-taxonomy) and [ORD resource](#ord-resource) information must be understood.
+
+ORD taxonomy is independent of specific [products](#product) or [system types](#system-type). In contrast, [ORD resources](#ord-resource) may be either [system-instance-aware](#system-instance-aware) (varying per instance) or [system-instance-unaware](#system-instance-unaware) (static across instances).
+
+###### Merging ORD Taxonomy
+
+This applies currently to the `Package` and `Product` [ORD taxonomy](#ord-taxonomy) interfaces.
+
+The information is [system-instance-unaware](#system-instance-unaware) and therefore MUST not be stored for each [system instance](#system-instance). If multiple systems/system instances describe the same ORD taxonomy instance, the following merging rules MUST be followed:
+
+- Instances with the same [ORD ID](#ord-id) are considered to be the same and MUST be merged.
+- If there is a conflict, the instance with the higher `version` according to the [Semantic Versioning](https://semver.org/) rules takes precedence.
+- If both instances have the same version but different content, the most recent information takes precedence. This case SHOULD be avoided and the aggregator MUST indicate this problem as part of the [validation rules](#validation-rules).
+- If a breaking change was introduced to a taxonomy entity (e.g. the meaning changed), a new major version of it MUST be introduced. See [Versioning and Lifecycle](#version-and-lifecycle).
+
+###### Merging ORD Resources
+
+This applies currently to the `APIResource` and `EventResource` [ORD resource](#ord-resource) interfaces.
+
+The information MAY be [system-instance-aware](#system-instance-aware). Therefore, the information MUST be retrieved and stored for each [system instance](#system-instance) individually. In this case, an ORD resource with the same [ORD ID](#ord-id) will exist exactly once for each system instance. Therefore, the ORD ID MUST be further qualified by a system instance ID when stored by the aggregator. If a [system landscape](#system-landscape) view needs to be supported, the information about the landscape assignment/zone information MUST be enriched and considered by the aggregator.
+
+If the same system instances describe the same ORD resource, the following merging rules MUST be followed:
+
+- Instances with the same ORD ID from the same system instance are considered to be the same and MUST be merged.
+- Instances with the same ORD ID from different system instances MUST not be merged. If the aggregator knows for sure that the information is [system-instance-unaware](#system-instance-unaware) it MAY only retrieve and store some of the information once for optimization purposes. However, the aggregator MUST store the information about which system instances (system instance IDs) the resource is available on.
+- If there is a conflict, the instance with the higher `version` according to [Semantic Versioning](https://semver.org/) rules takes precedence.
+- If both instances have the same version but different content, the most recent information takes precedence. This case SHOULD be avoided and the aggregator MUST indicate this problem as part of the [validation rules](#validation-rules).
+- If a breaking change was introduced to an ORD resource, a new major version of it MUST be introduced. See [Versioning and Lifecycle](#version-and-lifecycle).
+
+##### Content Enrichment and Preservation
+
+Some ORD information may need to be added, modified, inherited or preserved by the ORD aggregator.
+
+An ORD aggregator MUST implement an internal data model/persistence where the additional information can be stored. It MUST apply the outlined inheritance rules internally and expose the ORD information to ORD Consumers with inheritance already applied. This makes it easier for ORD Consumers, as they don't need to understand and apply the outlined rules.
+
+The following rules need to be implemented by ORD aggregators:
+
+- If the aggregator detects a change in a resource (compared to previous state), but the `lastUpdate` isn't provided or hasn't changed since, the aggregator MUST update the `lastUpdate` timestamp on aggregator side.
+	- This ensures that consumers can rely on `lastUpdate` to be always available and to understand if a change happened, even if the ORD Provider did not update it at the source
+		- Ideally this situation doesn't happen and the ORD Providers update `lastUpdate`. Then the date can also better reflect the time when the change happened, not when it was detected.
+- The aggregator MUST apply all defined inheritances from root document properties to all the ORD information that it contains.
+	- `policyLevel` (and the corresponding `customPolicyLevel`) MUST be inherited to the resource / Package level, with the latter taking precedence.
+- The aggregator MUST apply all defined inheritances from `Package` properties to all the ORD resources that it contains.
+	- `vendor`, `partOfProducts`, `tags`, `countries`, `industry`, and `lineOfBusiness` MUST be merged without duplicates.
+		- `labels` MUST be merged without duplicated values.
+		- Values of the same label key will be merged.
+				- Duplicate values of the same label key will be removed.
+- The aggregator MUST rewrite all URLs for [hosted resource definitions](#hosting-resource-definitions) to point to their own hosted URLs.
+- The aggregator MUST convert all relative URLs to absolute URLs
+	- Relative URLs MUST be rewritten according to the detected [base URL](#base-url) of the described system instance.
+		- The base URL MUST be made known to the aggregator, either via context (e.g. service discovery or trust context) or by explicitly describing it in the ORD document via `describedSystemInstance`.`baseUrl`.
+				- When both bits of information are available and differ, the aggregator MAY decide to give precedence to the context information.
+- The information on the [described system instance](#described-system-instance) SHOULD be added if it is missing.
+	- If system instance information is missing, the aggregator SHOULD obtain and enrich the ORD information, for example, via service discovery or trust context.
+		- If the ORD aggregator has additional information on a system instance that is not standardized through the ORD interfaces, they MAY be added and exposed through the ORD Discovery API.
+- The aggregator MAY keep a history of previous versions (including minor and patch changes) of published resources.
+
+##### Removal of Resources/Information
+
+The removal of resources is indicated through setting a [Tombstone](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#tombstone). The ORD Aggregator MUST remove unpublished information that has been tombstoned within a grace period of 31 days.
+
+##### Hosting Resource Definitions
+
+The ORD aggregator MUST host all files that have been referenced in the [ORD resources](#ord-resource), most notably the [resource definitions](#resource-definition). The files MUST be stored, hosted, and made available by the ORD aggregator system itself. The URLs to the hosted files MUST be rewritten accordingly in the [ORD Discovery API](#ord-discovery-api) responses. The aggregator MUST implement caching and error handling according to the [common REST characteristics](#common-rest-characteristics).
+
+The hosting ensures that ORD consumers can retrieve the referenced files directly from the aggregator itself. They don't need to fetch them from the [ORD Providers](#ord-provider) individually. This eliminates the need for authentication and authorization against many different systems. It also ensures that the files have the same high SLA availability that the ORD aggregator has.
+
+#### Validation Rules
+
+The ORD spec aims to move as many validation rules to the [ORD document](#ord-document) itself. The aggregator MUST validate the retrieved ORD documents accordingly.
+
+However, there are also validations that can only be done by an aggregator, such as checks for consistency across multiple systems or within a concrete system landscape.
+
+The following validation rules apply specifically for ORD aggregators:
+
+- References SHOULD be checked to not be broken, but MAY be temporally allowed to be "dangling". This happens if the [ORD ID](#ord-id) points to an ORD resource or ORD taxonomy that is not (yet) known to the ORD aggregator.
+	- As resources can be added or removed later, this SHOULD be continually checked. For example, one reference could point to an ORD resource that has been removed lately. Now the reference that was valid when it was created, becomes invalid and the relevant ORD Provider(s) SHOULD be notified.
+- The same ORD information or resource (identical ORD ID) MUST NOT be described multiple times within the same [system type](#system-type) or [system version](#system-version) scope. Please be aware that this could happen within an ORD Document or within the same ORD Provider on different ORD Documents. For migration transitions this rule MAY be violated temporarily.
+- Shared ORD information MAY be published by multiple [system types](#system-type) when the ORD ID identifies the same governed definition. In this case, all publishers MUST describe the ORD information consistently for the same `version`. The aggregator MUST validate consistency. This commonly uses an [authority namespace](#authority-namespace), but can also reuse another system type's namespace when that system type owns the definition. See [Shared Taxonomy, Resources and Contracts](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/shared-resources) for details.
+
+### ORD Discovery API
+
+The ORD Discovery API is a higher quality API, provided by an [ORD aggregator](#ord-aggregator) that is optimized for easy consumption of ORD information. It MAY support advanced features like pagination, filtering, search, expansion, etc. Such features are deliberately missing at the [ORD Provider API](#ord-provider-api) to keep the provider interface simple.
+
+The ORD Discovery API MUST be implemented by the [ORD aggregator](#ord-aggregator) role. It is the RECOMMENDED interface for [ORD consumers](#ord-consumer) to retrieve ORD information.
+
+An ORD aggregator MAY expose more information than it received from the ORD providers, for example additional information it acquired through service discovery or other metadata sources.
+
+As long as there is no standardized ORD Discovery API contract, each ORD aggregator MAY implement their own API contract. Ideally this contract is based on the [ORD Provider API](#ord-provider-api) interfaces with only minor differences and additions.
+
+## Perspectives
+
+With ORD it's possible to describe a system both from a [static perspective](#static-perspective) and a [dynamic perspective](#dynamic-perspective). For a definition, please refer to the [terminology](#terminology) section.
+
+> ⏩ This concept requires some background to understand properly. It is explained in more detail in the [perspectives concept page](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/perspectives).
+
+> This concept deprecates the use of `systemInstanceAware`
+
+There is a `perspective` attribute, which allows setting the following values:
+
+- `system-type`: The [static perspective](#static-perspective) that is version independent (`"perspective": "system-type"`). This perspective describes the latest version or version agnostic state of a [system type](#system-type). Use this when the system is not versioned (continuous delivery) or resources are not tied to a specific system version.
+- `system-version`: The [static perspective](#static-perspective) on the granularity of [system versions](#system-version) (`"perspective": "system-version"`) for [system-instance-unaware](#system-instance-unaware) information (usually known at deploy-time).
+- `system-instance`: The [dynamic perspective](#dynamic-perspective) on the granularity of [system-instances](#system-instance) (`"perspective": "system-instance"`), for [system-instance-aware](#system-instance-aware) information (only known at run-time).
+- `system-independent`: Describes content that is independent of system versions or system instances and can be shared across multiple systems.
+
+### Correct Use of Perspectives
+
+- Systems, which only have static metadata (system-instance-unaware) SHOULD choose either:
+	- The `system-type` perspective if the system is not versioned (continuous delivery) or resources do not relate to a specific system version
+		- The `system-version` perspective if the system has explicit versions
+		- If this is categorized correctly, the ORD aggregators do not have to aggregate static, identical metadata per tenant.
+		- In this case the same static metadata will be used to describe all system instances of the same version (or for `system-type`, all systems regardless of version)
+- Systems, which have dynamic metadata MUST use the `system-instance` perspective.
+	- They SHOULD also provide a complete static perspective (`system-type` or `system-version`) if possible, as static metadata is equally useful.
+		- The static and dynamic perspectives MAY be provided through different technical implementations, for example a static ORD Provider or publishing pipeline for the static perspective and an application-native ORD Provider API for the `system-instance` perspective. In this case, both perspectives MUST use the same ORD IDs for the same resources and MUST NOT describe those resources inconsistently.
+- If both perspectives are provided, each MUST be described completely, until we introduce a more optimized `system-instance-delta` perspective.
+- Content that is independent of systems (like Taxonomies, Products, Vendors) SHOULD use the `system-independent` perspective.
+
+> ⏩ For how aggregators resolve static perspective requests (e.g. which data to return when no version is specified), see the [static perspective resolution](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/perspectives#static-perspective-resolution) algorithm on the perspectives concept page.
+
+## ID Concepts
+
+### Namespaces
+
+ORD makes use of namespaces to ensure we don't have ID collisions between multiple, potentially independent sources of information.
+
+Each namespace is responsible for ensuring uniqueness and consistency within itself, taking sub-namespaces and IDs attached to the namespace into consideration. Namespaces are hierarchical. The responsibility and ownership can either be delegated or centralized. How exactly this is ensured and governed is up to the namespace owners, but one possible solution is to maintain a namespace registry.
+
+At SAP, this is ensured via the SAP namespace-registry.
+
+A namespace may consist of multiple fragments, delimited by dots (`.`).
+
+For the formatting of the individual fragments of the namespaces, the following rules apply:
+
+- MUST only consist of lower case ASCII letters (`a-z`) and digits (`0-9`).
+- Dot (`.`) is reserved as delimiter and MUST only be used for separating fragments.
+- See [namespace constraints](#namespace-constraints)
+
+A complete namespace MUST match the following [regular expression](https://en.wikipedia.org/wiki/Regular_expression):
+
+```regex
+^[a-z0-9]+(?:[.][a-z0-9]+)*$
+```
+
+> ℹ ORD can already be used outside of the SAP context, but this requires to take care of namespaces. It needs to be ensured that namespaces within the company are conflict free and follow the ORD namespace structure and constraints.
+
+#### Structure of Namespaces
+
+![Namespace Concept Overview](data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzA0NSIgaGVpZ2h0PSIxMDEzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBvdmVyZmxvdz0iaGlkZGVuIj48ZGVmcz48Y2xpcFBhdGggaWQ9ImNsaXAwIj48cmVjdCB4PSI3NDIiIHk9Ijc2MiIgd2lkdGg9IjMwNDUiIGhlaWdodD0iMTAxMyIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03NDIgLTc2MikiPjxyZWN0IHg9Ijc5OCIgeT0iNzYyIiB3aWR0aD0iMjk1MCIgaGVpZ2h0PSIxMDEzIiBmaWxsPSJub25lIi8+PHJlY3QgeD0iMTQxMCIgeT0iOTM5IiB3aWR0aD0iMzY2IiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0YyRjJGMiIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDEiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTU3MS4zNSA5ODYpIj4ob3B0aW9uYWwpPC90ZXh0PjxyZWN0IHg9IjE0NTEiIHk9IjEwMTEiIHdpZHRoPSIzMTQiIGhlaWdodD0iMTg3IiBmaWxsPSIjQkVDRjcwIi8+PHJlY3QgeD0iMTE3OSIgeT0iMTAxMiIgd2lkdGg9IjIzMSIgaGVpZ2h0PSIxODciIGZpbGw9IiMzNUJFRTMiLz48cmVjdCB4PSI4MzAiIHk9IjEwMTIiIHdpZHRoPSIyOTQiIGhlaWdodD0iMTg4IiBmaWxsPSIjNzU4QUIyIi8+PHBhdGggZD0iTTExMTkuNSAxMjQ0LjVDMTExOS41IDEyNTkuMTQgMTExNy41MiAxMjcxIDExMTUuMDggMTI3MUw5NzguOTE3IDEyNzFDOTc2LjQ3NyAxMjcxIDk3NC41IDEyODIuODYgOTc0LjUgMTI5Ny41IDk3NC41IDEyODIuODYgOTcyLjUyMyAxMjcxIDk3MC4wODMgMTI3MUw4MzMuOTE2IDEyNzFDODMxLjQ3NyAxMjcxIDgyOS41IDEyNTkuMTQgODI5LjUgMTI0NC41IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iOS4xNjY2NyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48dGV4dCBmaWxsPSIjNzU4QUIyIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjQ2IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDkwMC42NyAxMzcyKSI+VmVuZG9yPC90ZXh0Pjx0ZXh0IGZpbGw9IiMzNUJFRTMiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDgiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTE1My41NCAxMzUwKSI+QXBwbGljYXRpb24vPC90ZXh0Pjx0ZXh0IGZpbGw9IiMzNUJFRTMiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDgiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTE5Ny45NiAxNDA4KSI+U2VydmljZTwvdGV4dD48dGV4dCBmaWxsPSIjMzVCRUUzIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjQ2IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDkyMy45NjUgMTU2MykiPlN5c3RlbTwvdGV4dD48dGV4dCBmaWxsPSIjMzVCRUUzIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjQ2IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDEwODguOTYgMTU2MykiPk5hbWVzcGFjZTwvdGV4dD48cmVjdCB4PSI4MzAiIHk9Ijc5OSIgd2lkdGg9Ijk0NiIgaGVpZ2h0PSI5NC4wMDAyIi8+PHRleHQgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI1MCIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSA4NjIuOTUyIDg2NCkiPlZBUklBTlQgMTogT3duZXJzaGlwIGJ5IDwvdGV4dD48dGV4dCBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjUwIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDE0NzMuNjggODY0KSI+U3lzdGVtPC90ZXh0Pjx0ZXh0IGZpbGw9IiNCRUNGNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTQ5NC4xIDEzNzIpIj5TdWI8L3RleHQ+PHRleHQgZmlsbD0iI0JFQ0Y3MCIgZm9udC1mYW1pbHk9IkFyaWFsLEFyaWFsX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSI0NiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAxNTc0Ljg4IDEzNzIpIj4tPC90ZXh0Pjx0ZXh0IGZpbGw9IiNCRUNGNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTU5MC4zNSAxMzcyKSI+Q29udGV4dDwvdGV4dD48cGF0aCBkPSJNMTQwOC41IDEyNDAuNUMxNDA4LjUgMTI1NS4xNCAxNDA2LjUyIDEyNjcgMTQwNC4wOCAxMjY3TDEzMDQuOTIgMTI2N0MxMzAyLjQ4IDEyNjcgMTMwMC41IDEyNzguODYgMTMwMC41IDEyOTMuNSAxMzAwLjUgMTI3OC44NiAxMjk4LjUyIDEyNjcgMTI5Ni4wOCAxMjY3TDExOTYuOTIgMTI2N0MxMTk0LjQ4IDEyNjcgMTE5Mi41IDEyNTUuMTQgMTE5Mi41IDEyNDAuNSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjkuMTY2NjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTE3NjUuNSAxMjM5LjVDMTc2NS41IDEyNTQuMTQgMTc2My41MiAxMjY2IDE3NjEuMDggMTI2NkwxNjEyLjkyIDEyNjZDMTYxMC40OCAxMjY2IDE2MDguNSAxMjc3Ljg2IDE2MDguNSAxMjkyLjUgMTYwOC41IDEyNzcuODYgMTYwNi41MiAxMjY2IDE2MDQuMDggMTI2NkwxNDU1LjkyIDEyNjZDMTQ1My40OCAxMjY2IDE0NTEuNSAxMjU0LjE0IDE0NTEuNSAxMjM5LjUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI5LjE2NjY3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0xNDA5LjUgMTQ0OS41QzE0MDkuNSAxNDY0LjE0IDE0MDcuNTIgMTQ3NiAxNDA1LjA4IDE0NzZMMTEyMy45MiAxNDc2QzExMjEuNDggMTQ3NiAxMTE5LjUgMTQ4Ny44NiAxMTE5LjUgMTUwMi41IDExMTkuNSAxNDg3Ljg2IDExMTcuNTIgMTQ3NiAxMTE1LjA4IDE0NzZMODMzLjkxNiAxNDc2QzgzMS40NzcgMTQ3NiA4MjkuNSAxNDY0LjE0IDgyOS41IDE0NDkuNSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjkuMTY2NjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHJlY3QgeD0iMjUyMiIgeT0iOTM5IiB3aWR0aD0iMTE5MCIgaGVpZ2h0PSI0OTgiIGZpbGw9IiNGMkYyRjIiLz48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjQxIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDM1MDcuNDcgOTg2KSI+KG9wdGlvbmFsKTwvdGV4dD48cmVjdCB4PSIyNTg2IiB5PSIxMDExIiB3aWR0aD0iMTEwOCIgaGVpZ2h0PSIxODciIGZpbGw9IiNCRUNGNzAiLz48cmVjdCB4PSIyMjE4IiB5PSIxMDEyIiB3aWR0aD0iMzA0IiBoZWlnaHQ9IjE4NyIgZmlsbD0iI0ZGOTU1NSIvPjxyZWN0IHg9IjE4NjAiIHk9IjEwMTIiIHdpZHRoPSIyOTQiIGhlaWdodD0iMTg4IiBmaWxsPSIjNzU4QUIyIi8+PHRleHQgZm9udC1mYW1pbHk9IkNvbnNvbGFzLENvbnNvbGFzX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSIxNjUiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTg3Ny41MiAxMTQ4KSI+c2FwLm9kbS5maW5hbmNlLmJhbms8L3RleHQ+PHBhdGggZD0iTTIxNDkuNSAxMjQ0LjVDMjE0OS41IDEyNTkuMTQgMjE0Ny41MiAxMjcxIDIxNDUuMDggMTI3MUwyMDA4LjkyIDEyNzFDMjAwNi40OCAxMjcxIDIwMDQuNSAxMjgyLjg2IDIwMDQuNSAxMjk3LjUgMjAwNC41IDEyODIuODYgMjAwMi41MiAxMjcxIDIwMDAuMDggMTI3MUwxODYzLjkyIDEyNzFDMTg2MS40OCAxMjcxIDE4NTkuNSAxMjU5LjE0IDE4NTkuNSAxMjQ0LjUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI5LjE2NjY3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjx0ZXh0IGZpbGw9IiM3NThBQjIiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTkzMC4zNCAxMzcyKSI+VmVuZG9yPC90ZXh0Pjx0ZXh0IGZpbGw9IiNGRjk1NTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMjI4NC4yMyAxMzcwKSI+QXV0aG9yaXR5PC90ZXh0Pjx0ZXh0IGZpbGw9IiNGRjk1NTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTk0NC42NyAxNTY5KSI+QXV0aG9yaXR5IE5hbWVzcGFjZTwvdGV4dD48cmVjdCB4PSIxODYwIiB5PSI3OTkiIHdpZHRoPSIxODUyIiBoZWlnaHQ9Ijk0LjAwMDIiLz48dGV4dCBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjUwIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDE4OTIuNjIgODY0KSI+VkFSSUFOVCAyOiBPd25lcnNoaXAgYnkgQXV0aG9yaXR5PC90ZXh0Pjx0ZXh0IGZpbGw9IiNCRUNGNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMjk2Ni40OSAxMzY3KSI+U3ViPC90ZXh0Pjx0ZXh0IGZpbGw9IiNCRUNGNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMzA0Ny4yNyAxMzY3KSI+LTwvdGV4dD48dGV4dCBmaWxsPSIjQkVDRjcwIiBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjQ2IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDMwNjIuNzQgMTM2NykiPkNvbnRleHQ8L3RleHQ+PHBhdGggZD0iTTI1MjIuNSAxMjQwLjVDMjUyMi41IDEyNTUuMTQgMjUyMC41MiAxMjY3IDI1MTguMDggMTI2N0wyMzc0LjkyIDEyNjdDMjM3Mi40OCAxMjY3IDIzNzAuNSAxMjc4Ljg2IDIzNzAuNSAxMjkzLjUgMjM3MC41IDEyNzguODYgMjM2OC41MiAxMjY3IDIzNjYuMDggMTI2N0wyMjIyLjkyIDEyNjdDMjIyMC40OCAxMjY3IDIyMTguNSAxMjU1LjE0IDIyMTguNSAxMjQwLjUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI5LjE2NjY3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0zNjk0LjUgMTI0MC41QzM2OTQuNSAxMjU1LjE0IDM2OTIuNTIgMTI2NyAzNjkwLjA4IDEyNjdMMzE0NC45MiAxMjY3QzMxNDIuNDggMTI2NyAzMTQwLjUgMTI3OC44NiAzMTQwLjUgMTI5My41IDMxNDAuNSAxMjc4Ljg2IDMxMzguNTIgMTI2NyAzMTM2LjA4IDEyNjdMMjU5MC45MiAxMjY3QzI1ODguNDggMTI2NyAyNTg2LjUgMTI1NS4xMyAyNTg2LjUgMTI0MC41IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iOS4xNjY2NyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48cGF0aCBkPSJNMjUyMi41IDE0NDkuNUMyNTIyLjUgMTQ2NC4xNCAyNTIwLjUyIDE0NzYgMjUxOC4wOCAxNDc2TDIxOTUuNDIgMTQ3NkMyMTkyLjk4IDE0NzYgMjE5MSAxNDg3Ljg2IDIxOTEgMTUwMi41IDIxOTEgMTQ4Ny44NiAyMTg5LjAyIDE0NzYgMjE4Ni41OCAxNDc2TDE4NjMuOTIgMTQ3NkMxODYxLjQ4IDE0NzYgMTg1OS41IDE0NjQuMTQgMTg1OS41IDE0NDkuNSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjkuMTY2NjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHRleHQgZm9udC1mYW1pbHk9IkNvbnNvbGFzLENvbnNvbGFzX01TRm9udFNlcnZpY2Usc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjQwMCIgZm9udC1zaXplPSIxNjUiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgODQxLjEzNyAxMTQ4KSI+c2FwLnM0LmJlaDwvdGV4dD48cGF0aCBkPSJNMTc2NS41IDE2MTAuNUMxNzY1LjUgMTYyNS4xNCAxNzYzLjUyIDE2MzcgMTc2MS4wOCAxNjM3TDEyOTUuNDIgMTYzN0MxMjkyLjk4IDE2MzcgMTI5MSAxNjQ4Ljg2IDEyOTEgMTY2My41IDEyOTEgMTY0OC44NiAxMjg5LjAyIDE2MzcgMTI4Ni41OCAxNjM3TDgyMC45MTYgMTYzN0M4MTguNDc3IDE2MzcgODE2LjUgMTYyNS4xNCA4MTYuNSAxNjEwLjUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI5LjE2NjY3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjx0ZXh0IGZvbnQtZmFtaWx5PSJBcmlhbCxBcmlhbF9NU0ZvbnRTZXJ2aWNlLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI0MDAiIGZvbnQtc2l6ZT0iNDYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEgMTE3Mi4xNCAxNzI0KSI+TmFtZXNwYWNlPC90ZXh0PjxwYXRoIGQ9Ik0zNjk0LjUgMTYxMS41QzM2OTQuNSAxNjI2LjE0IDM2OTIuNTIgMTYzOCAzNjkwLjA4IDE2MzhMMjc4MS40MiAxNjM4QzI3NzguOTggMTYzOCAyNzc3IDE2NDkuODYgMjc3NyAxNjY0LjUgMjc3NyAxNjQ5Ljg2IDI3NzUuMDIgMTYzOCAyNzcyLjU4IDE2MzhMMTg2My45MiAxNjM4QzE4NjEuNDggMTYzOCAxODU5LjUgMTYyNi4xNCAxODU5LjUgMTYxMS41IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iOS4xNjY2NyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48dGV4dCBmb250LWZhbWlseT0iQXJpYWwsQXJpYWxfTVNGb250U2VydmljZSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNDAwIiBmb250LXNpemU9IjQ2IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDI2NTQuNzQgMTcyNCkiPk5hbWVzcGFjZTwvdGV4dD48L2c+PC9zdmc+ "Namespace Concept Overview")
+
+Namespaces MUST follow the below structure:
+
+```xml
+<vendorNamespace> := <vendorId>
+    <vendorId> := identifier for the vendor / organization.
+    \`customer\` is a reserved vendor ID for [customer content / systems](#customer-namespace).
+
+<systemNamespace> := <vendorNamespace>.<systemTypeId>
+    <systemTypeId> := identifier for the system type (service / application).
+
+<authorityNamespace> := <vendorNamespace>.<authorityId>
+    <authorityId> := identifier for the authority.
+```
+
+Optionally, sub-contexts can be defined as sub namespaces for system and authority namespaces:
+
+```xml
+<namespace> := <systemNamespace/authorityNamespace>[.<subContext>]
+    <subContext> := sub-context below application or authority namespace. May consist of multiple fragments.
+```
+
+#### Namespace Constraints
+
+- A namespace MUST be ensured to be conflict free. This falls into the responsibility of the registered namespace owner and assumes a registry of some kind.
+- The total length of the `<systemNamespace>` or `<authorityNamespace>` MUST NOT exceed 32 characters
+- The total length of the overall `<namespace>` (incl. nested subcontext namespaces) MUST NOT exceed 36 characters
+- It is RECOMMENDED to keep namespaces as short as reasonable, as they become part of IDs which have their own length limitations. Shorter namespaces leave more room for the overall IDs.
+
+#### Vendor Namespace
+
+A **vendor namespace** is a stable and globally unique identifier namespace that corresponds to a vendor / company. The vendor owns this top-level namespace and is responsible for governing this namespace and all the namespaces within it.
+
+A vendor namespace MUST be constructed according to the following rules:
+
+`<vendorNamespace>`:= `<vendorId>`
+
+- `<vendorId>` is a registered ID of a vendor.
+	- MUST only consist of lower case ASCII letters (`a-z`) and digits (`0-9`).
+		- The organization using ORD MUST ensure that `<vendorId>` is uniquely registered, e.g. in a namespace registry.
+		- There is a special reserved vendor namespace `customer`:
+		- It can be used in extension scenarios, where the customer of an application (tenant owner) creates their own ORD resources.
+				- This avoids that customers need to register their own namespaces (which could still be done as an alternative).
+- MUST match Regexp: `^[a-z0-9]+$`
+
+**Examples**: For SAP, we chose and registered `sap`.
+
+> 🚧 There is currently no global namespace registry where we can ensure that there are no conflicts across different vendors.
+
+#### System Namespace
+
+An system namespace is a stable and globally unique identifier namespace that corresponds to an ORD [system type](#system-type) (application or service type).
+
+The system type is the top-level technical, simplified view on an application or service. There can be hierarchical groupings of them to higher, logical concepts and also to divide them into multiple sub-components. Here we simplify on purpose and **treat the identity of an application / service type flatly, without hierarchy**. How this boundary is drawn depends on the technical decisions of the application / service.
+
+To model a more complex application or organizational structure, for instance containing multiple modules / components, further sub-fragments MAY be indicated via [sub-context namespaces](#sub-context-namespace).
+
+System namespaces are sub-namespaces of exactly one vendor namespace.
+
+An system namespace MUST be constructed according to the following rules:
+
+`<systemNamespace> := <vendorNamespace>.<systemTypeId>`
+
+- `<systemNamespace>` MUST be a valid [vendor namespace](#vendor-namespace)
+- `<systemTypeId>` is the identifier of the technical system type (of the application or service).
+	- MUST only consist of lower case ASCII letters (`a-z`) and digits (`0-9`).
+- MUST match Regexp: `^[a-z0-9]+(?:[.][a-z0-9]+){1}$`
+
+**Examples**: `sap.s4`, `sap.dsc`.
+
+#### Authority Namespace
+
+An authority namespace is a stable and globally unique identifier namespace that corresponds to an **organizational unit** responsible for cross-alignment and governance. Authority namespaces are relevant when contracts, interfaces or taxonomy are owned and defined on a level that spans across individual applications or services. This includes shared API contracts, event definitions, data products, capabilities, integration dependencies, consumption bundles, and agents that are provided by multiple [system types](#system-type) built from the same software components. See [Shared Taxonomy, Resources and Contracts](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/shared-resources) for details on namespace ownership and authority namespaces.
+
+An authority namespace MUST be constructed according to the following rules:
+
+`<authority>`:= `<vendorNamespace>.<authorityIdentifier>`
+
+- `<vendorNamespace>` MUST be a valid [vendor namespace](#vendor-namespace)
+- `<authorityIdentifier>` is the identifier of the organizational unit.
+	- MUST only consist of lower case ASCII letters (`a-z`) and digits (`0-9`).
+- MUST match Regexp: `^[a-z0-9]+(?:[.][a-z0-9]+){1}$`
+
+**Examples**: `sap.odm`.
+
+#### Sub-Context Namespace
+
+A sub-context namespace is a stable and globally unique identifier namespace that allows for further namespacing within an [system namespace](#system-namespace) or [authority namespace](#system-namespace).
+
+A sub-context can be motivated by ownership, ID uniqueness, domain or technical modularity concerns.
+
+- A Sub-Context MUST be directly below an application / service namespace or an authority namespace.
+- A Sub-Context MAY contain further sub-namespaces, e.g. `subcontext.subsubcontext`.
+- **The Sub-Context MUST NOT be interpreted as identity by services and consumers.**.
+
+A sub-context namespace MUST be constructed according to the following rules:
+
+`<subContextNamespace>`:= `<systemNamespace|authorityNamespace>.<subContextName>`
+
+- `<systemNamespace|authorityNamespace>` MUST be a valid [system namespace](#system-namespace) or [authority namespace](#system-namespace).
+- `<subContextName>` is the identifier of the application / service.
+	- MUST only consist of lower case ASCII letters (`a-z`) and digits (`0-9`) (`^[a-z0-9]+$`).
+		- MAY include further sub-context namespaces, separated by `.`.
+- MUST match Regexp: `^[a-z0-9]+(?:[.][a-z0-9]+){2,}$`
+
+**Examples**: `sap.billing.sb`, `sap.s4.beh`, `sap.odm.finance.bank`.
+
+It is NOT RECOMMENDED to use sub-context namespaces for grouping purposes only, see [grouping and bundling](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/grouping-and-bundling#namespaces).
+
+### Customer Namespace
+
+Some systems allow their customers / end-users to create their own resources (in-app extensions). In most cases these resources are local to the tenant, so we don't need to force the customer to register a namespace.
+
+To keep this situation simple, there is a reserved [vendor namespace](#vendor-namespace): `customer`. Everything within this namespace is owned by the customer, the owner of the tenant. In addition, there is one reserved authority namespace, specifically for customer in-app extensions: `customer.ext`.
+
+The limitation of using `customer.*` namespaces is that they are unique only within a tenant and once the resources are published and shared outside the local scope, the `customer` namespace will be insufficient.
+
+### ORD ID
+
+An ORD ID is a stable and globally unique identifier (at design-time) for [ORD resources](#ord-resource) and [ORD taxonomies](#ord-taxonomy).
+
+It serves two purposes:
+
+- Use as an identifier for ORD information.
+- Refer to an ORD resources/taxonomy.
+
+The ORD ID is a globally unique identifier from a [system type](#system-type) perspective and is [system-instance-unaware](#system-instance-unaware). This means that the ORD ID will not include information about system instances (e.g. tenant IDs) and is therefore only unique at design-time. Therefore an ORD ID is not unique from a [system instance](#system-instance) perspective. The same resource (with the same ORD ID) can be exposed in different variations (e.g. customizations, extensions) by multiple system instances at run-time.
+
+To get a globally unique ID at run-time, a composite key is required. This can be achieved by either combining it with a system instance ID or a full version, depending on the use cases.
+
+When the same shared ORD information is published or reused by multiple [system types](#system-type), the ORD ID identifies the shared contract, taxonomy item, definition or governance model, and the system type or system instance provides the additional context for uniqueness. This commonly uses an [authority namespace](#authority-namespace), but can also use a system namespace when that system type owns the reused definition.
+
+#### ORD ID Construction
+
+The ORD ID consists of four fragments, separated by `:`.
+
+It MUST be constructed as defined here:
+
+**`<ordId>`**:= `<namespace>:<conceptName>:<resourceName>:[v<majorVersion>]`
+
+- **`<namespace>`**:= an [ORD namespace](#namespaces). The namespace MUST reflect the owner governing the described ORD information.
+	- For `Package`, `ConsumptionBundle`, `APIResource`, `EventResource`, `EntityType`, `Capability`, `IntegrationDependency`, `DataProduct` and `Agent`:
+		- MUST be a valid [system namespace](#system-namespace), [authority namespace](#authority-namespace) or [sub-context namespace](#sub-context-namespace) thereof
+				- A [system namespace](#system-namespace) SHOULD be used when the resource, resource grouping, access grouping or taxonomy item is specific to a single system type.
+				- An [authority namespace](#authority-namespace) SHOULD be used when the resource, resource grouping, access grouping or taxonomy item represents a shared contract, definition or governance model across multiple [system types](#system-type). See [Shared Taxonomy, Resources and Contracts](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/shared-resources).
+		- For `Vendor` and `Product`:
+		- MUST be a valid [vendor namespace](#vendor-namespace) for `Vendor` and `Product`
+		- For system-namespaced ORD IDs, the provider is the system hosting the described resource. In advanced cases, the provider could be an embedded system / sidecar with its own system namespace. This can lead to multiple system namespaces within one system. In this case it needs to be taken care that static publishing does not create conflicts, e.g. through moving the publishing responsibility to the embedded system (and not by the parent system).
+		- For authority-namespaced ORD IDs, the namespace identifies the organizational unit governing the shared contract, definition, taxonomy item or access grouping.
+- **`<conceptName>`**:= The ORD concept name of the described resource / taxonomy.
+	- Use `product` for `Product`
+		- Use `vendor` for `Vendor`
+		- Use `package` for `Package`
+		- Use `consumptionBundle` for `ConsumptionBundle`
+		- Use `apiResource` for `APIResource`
+		- Use `eventResource` for `EventResource`
+		- Use `capability` for `Capability`
+		- Use `entityType` for `EntityType`
+		- Use `integrationDependency` for `IntegrationDependency`
+		- Use `dataProduct` for `DataProduct`
+		- Use `agent` for `Agent`
+- **`<resourceName>`**:= the technical resource name.
+	- MUST only contain ASCII letters (`a-z`, `A-Z`), digits (`0-9`) and the special characters `-`, `_` and `.`.
+		- MUST be unique within the `<namespace>`.
+		- SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+		- SHOULD be kept stable when a new `<majorVersion>` is introduced, so multiple major versions of the same resource share the same `<namespace>:<conceptName>:<resourceName>:` part of the ORD ID.
+		- This can help an aggregator to group the semantically same APIs multiple major versions together
+				- If this cannot be followed, the relationship to the successor APIs can still be indicated via the `successors` property.
+- **`<majorVersion>`**:= a version incrementor of the resource that increases on breaking changes.
+	- MUST be provided for `Package`, `ConsumptionBundle`, `APIResource`, `EventResource`, `EntityType`, `Capability`, `IntegrationDependency`, `DataProduct` and `Agent`
+		- MUST NOT be provided for `Product` and `Vendor`
+		- If provided: MUST be an integer and MUST NOT contain leading zeroes.
+		- MUST be incremented if the resource introduced an incompatible API change. This correlates with a major version change in [Semantic Versioning](https://semver.org/).
+		- If the described resource has a `releaseStatus` of `beta`, this rule can be ignored. Incompatible changes MAY be introduced in `beta` resources.
+		- MUST NOT be incremented if non-breaking changes have been made to the resource; the updated resource should replace the current one.
+		- The `<majorVersion>` and the major version of [`version`](#version-and-lifecycle) MUST be identical.
+		- In the case of REST APIs, the `<majorVersion>` MUST also equal the API Version. Please be aware that most organizations have defined API Compatibility rules that MUST be followed in this context.
+- The ORD ID MUST be globally unique.
+- The ORD ID is immutable and MUST not change after it has been published.
+- The ORD ID MUST not exceed 255 characters in total.
+- The ORD ID MUST be interpreted case-insensitively when used for comparison, lookups or deduplication.
+	- Although `<resourceName>` permits mixed-case letters, two ORD IDs differing only in casing MUST be treated as the same identifier.
+		- This is required because ORD IDs appear as URL path segments (conventionally case-insensitive) and are shared across independent organizations, where case-sensitive distinctions would make global uniqueness unenforceable.
+
+An ORD ID MUST match the following [regular expression](https://en.wikipedia.org/wiki/Regular_expression):
+
+```regex
+^([a-z0-9]+(?:[.][a-z0-9]+)*):(package|consumptionBundle|product|vendor|apiResource|eventResource|capability|entityType|integrationDependency|dataProduct|agent):([a-zA-Z0-9._\-]+):(v0|v[1-9][0-9]*|)$
+```
+
+Examples:
+
+- sap.s4:apiResource:CE\_APS\_COM\_CS\_A4C\_ODATA\_0001:v1
+
+#### ORD ID Resolving
+
+An ORD ID should contain all of the necessary information to be self-contained and to be successfully resolved.
+
+Resolving an ORD ID can serve multiple purposes, for example, by having an ID we can construct the link to the API Catalog page describing this resource. Or we can construct the API request to an [ORD aggregator](#ord-aggregator) where the ORD resource can be accessed.
+
+The rules about how an ORD ID is resolved to the customer's own URLs/APIs SHOULD be provided by the ORD aggregator.
+
+### Correlation ID
+
+A Correlation ID is a stable and globally unique reference and is conceptually similar to an [ORD ID](#ord-id). It can be used to correlate [ORD resources](#ord-resource) and [ORD taxonomy](#ord-taxonomy) to information that is provided by other systems (especially systems of record). If the target information is already described via ORD, the relation should be expressed via an [ORD ID](#ord-id) instead.
+
+The correlation ID does not have a version fragment like the ORD ID, because it assumes that versioning is already part of the `<localIdentifier>` (if applicable at all). It is assumed that the `<localIdentifier>` already considers the problem of versioning if applicable.
+
+#### Correlation ID Construction
+
+A Correlation ID consists of three fragments, separated by `:`. Its first two fragments `<namespace>:<conceptName>` are a [Concept ID](#concept-id).
+
+It MUST be constructed as defined here:
+
+**`<correlationId>`**:= `<namespace>:<conceptName>:<localIdentifier>`
+
+- **`<namespace>`**:= an [ORD namespace](#namespaces).
+	- MUST be a valid [namespace](#namespaces).
+- **`<conceptName>`**: the name of the target concept (free choice of concept name)
+	- MUST only contain alphanumeric characters and the special characters `-`, `_`, `/` and `.`.
+		- MUST be unique within the chosen `<namespace>`.
+		- MUST be a concept that is understood by the application of the `<namespace>`.
+		- SHOULD be (sufficiently) human readable and SEO/URL friendly (avoid UUIDs).
+		- SHOULD be registered as a known concept on the level of its `<namespace>`.
+- **`<localIdentifier>`**:= the local resource ID.
+	- MUST only contain alphanumeric characters and the special characters `-`, `_`, `/` and `.`.
+		- MUST be unique within the chosen `<namespace>`.
+		- SHOULD be (sufficiently) human readable and SEO/URL friendly (avoid UUIDs).
+
+The system of record application / service or responsible org unit is indicated through the [`<namespace>`](#namespaces) and MUST be able to resolve / correlate when given the `<conceptName>` and the `<localIdentifier>`.
+
+A Correlation ID MUST not exceed 255 characters in total.
+
+A Correlation ID MUST match the following [regular expression](https://en.wikipedia.org/wiki/Regular_expression):
+
+```regex
+^([a-z0-9]+(?:[.][a-z0-9]+)*):([a-zA-Z0-9._\-\/]+):([a-zA-Z0-9._\-\/]+)$
+```
+
+Examples (contrived):
+
+- `sap.s4:communicationScenario:SAP_COM_0008`
+- `sap.cld:system:500064231`
+- `sap.cld:tenant:741234567`
+
+### Concept ID
+
+A Concept ID consists of two fragments, separated by `:`.
+
+It MUST be constructed as defined here:
+
+**`<conceptId>`**:= `<namespace>:<conceptName>`
+
+- **`<namespace>`**:= an [ORD namespace](#namespaces).
+	- MUST be a valid [namespace](#namespaces).
+- **`<conceptName>`**: the name of the target concept (free choice of concept name)
+	- MUST only contain alphanumeric characters and the special characters `-`, `_`, `/` and `.`.
+		- MUST be unique within the chosen `<namespace>`.
+		- MUST be a concept that is understood by the application owning the `<namespace>`.
+		- SHOULD be (sufficiently) human readable and SEO/URL friendly (avoid UUIDs).
+		- SHOULD be registered as a known concept on the level of its `<namespace>`.
+
+The system of record application / service or responsible org unit is indicated through the [`<namespace>`](#namespaces) and MUST be able to resolve / correlate when given the `<conceptName>` and the `<localIdentifier>`.
+
+A Concept ID MUST not exceed 255 characters in total.
+
+A Concept ID MUST match the following [regular expression](https://en.wikipedia.org/wiki/Regular_expression):
+
+```regex
+^([a-z0-9]+(?:[.][a-z0-9]+)*):([a-zA-Z0-9._\-\/]+)$
+```
+
+Examples (contrived):
+
+- `sap.cap:service`
+- `sap.s4:communicationScenario`
+- `sap.cld:system`
+
+### Specification ID
+
+A Specification ID is a stable and globally unique reference to a specification of a standard, procedure or guideline.
+
+It can be used to indicate which strategy to use for certain ORD behaviors ([access strategies](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-extensions/access-strategies), credential exchange strategies, [policy levels](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-extensions/policy-levels) and can be implemented in multiple ways (see [strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern)). In some situations it is also used to refer to certain implementation standards (for example resource definition standards).
+
+#### Specification ID Construction
+
+**`<specificationId>`**:= `<namespace>:<specificationIdentifier>:v<majorVersion>`
+
+- **`<namespace>`**:= an [ORD namespace](#namespaces).
+	- MUST be a valid [namespace](#namespaces).
+		- If the specification is specific only to a single application / service, an [system namespace](#system-namespace) SHOULD be chosen.
+- **`<specificationIdentifier>`** a technical Specification Identifier that is unique within `<namespace>`
+	- MUST only contain ASCII letters (`a-z`, `A-Z`), digits (`0-9`) and the special characters `-`, `_`, `/` and `.`.
+		- MUST be unique within `<namespace>`.
+		- SHOULD be (sufficiently) human readable (avoid UUIDs).
+- **`<majorVersion>`** the major version for the chosen specification
+	- MUST be an integer.
+		- MUST be incremented if the specification introduced an incompatible change for the implementers of the specification. This correlates with a major version change in [Semantic Versioning](https://semver.org/).
+		- MUST NOT be incremented if non-breaking changes have been made; the updated specification should replace the current one.
+
+A Specification ID MUST not exceed 255 characters in total.
+
+A Specification ID MUST match the following [regular expression](https://en.wikipedia.org/wiki/Regular_expression):
+
+```regex
+^([a-z0-9]+(?:[.][a-z0-9]+)*):([a-zA-Z0-9._\-]+):(v0|v[1-9][0-9]*)$
+```
+
+## Version and Lifecycle
+
+### Versioning
+
+The `version` expresses the complete/full resource version number of an [ORD resource](#ord-resource) or [ORD taxonomy](#ord-taxonomy).
+
+It MUST follow the [Semantic Versioning 2.0.0](https://semver.org/) standard and therefore express minor and patch changes that don't lead to incompatible changes.
+
+The version SHOULD be changed when the resource or the resource definition changed in any way relevant to consumers. If (potentially runtime) customization/extension leads to changes in the resource definition, a build number SHOULD be added or incremented to indicate that this change happened.
+
+When the `version` major version changes, the [ORD ID](#ord-id) `<majorVersion>` fragment MUST be updated to be identical. If the resource definition also contains a version number, it SHOULD be in sync with the resource `version` (if possible).
+
+When a breaking change is introduced, the rules on constructing [ORD IDs](#ord-id) will ensure that the old version of the resource is not replaced. The new version will lead to the creation of a separate and new successor resource (see `successor` property).
+
+### Lifecycle
+
+Once a newer resource succeeds an older resource, the old resource SHOULD be deprecated via [`releaseStatus`](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#api-resource_releasestatus) set to `deprecated`. This is not mandatory, because deprecating a resource is a separate decision to creating a successor. The `releaseStatus` property defines the maturity level and stability commitment for a resource's API contract, potentially progressing through the lifecycle: `beta` (unstable, not for production) → `active` (stable, production-ready) → `deprecated` (scheduled for removal) → `sunset` (decommissioned).
+
+A deprecation does not automatically imply a planned sunset of the resource, which is done separately via setting a `sunsetDate`. When a resource is deprecated, a `deprecationDate` SHOULD be provided and `successors` MUST be referenced if they exist.
+
+Note that [`visibility`](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#api-resource_visibility) and `releaseStatus` are independent concerns: visibility controls *who* can see the resource (`public`, `internal`, or `private`), while release status controls the *stability* of the API contract. For example, a `public` resource can have `releaseStatus` of `beta`, meaning it's visible to external consumers but without stability guarantees.
+
+When an ORD resource has been sunset or an ORD taxonomy is no longer used, it:
+
+- MUST be removed from ORD or set the `releaseStatus` to `sunset`.
+- MUST explicitly set a [`Tombstone`](https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/interfaces/Document#ord-document_tombstones).
+
+## Common REST Characteristics
+
+### Error Handling
+
+If there are internal implementation errors, the REST endpoint MUST return a `500` (Server Error) response as defined in the [OpenAPI 3 definition](https://open-resource-discovery.org/spec-v1/interfaces/DocumentAPI.oas3.yaml). Additional error details MAY be added.
+
+If a resource has been requested that does not exist or is not implemented, the REST endpoint MUST return a `404` (Not Found) response as defined in the [OpenAPI 3 definition](https://open-resource-discovery.org/spec-v1/interfaces/DocumentAPI.oas3.yaml). Additional error details MAY be added.
+
+### Authentication & Authorization
+
+The ORD document endpoints MAY implement authentication and authorization to protect the ORD information and the resource definitions it references. In case of system-instance-aware information, authentication MAY be a technical necessity.
+
+If authentication/authorization are applied, the endpoints MUST return the corresponding HTTP status codes `401` (Unauthorized) and `403` (Forbidden) as defined in the [OpenAPI 3 definition](https://open-resource-discovery.org/spec-v1/interfaces/DocumentAPI.oas3.yaml).
+
+The specification makes no hard assumptions about the authorization and authentication mechanism. The strategy/access methodology that was chosen to retrieve the ORD information and the referenced resource definition files is described via Access Strategies (`accessStrategies`).
+
+## Terminology
+
+This specification defines and uses the following terms (for the ORD context):
+
+#### ORD
+
+**ORD** is the abbreviation for Open Resource Discovery. It refers to the standard (as defined by the specification) as a whole.
+
+#### ORD Information
+
+**ORD information** is the sum of all information that can be expressed through ORD.
+
+ORD information can have different [perspectives](#perspectives):
+
+#### Static Perspective
+
+The **static perspective** describes how a system generically looks like ("baseline"), without any customizations or extensions but with all pre-delivered capabilities fully described. Such static perspectives can be described at **design-time** or **deploy-time**. They can be used to describe a [system type](#system-type) and [system version](#system-version). This is useful, e.g. to describe potential resources users / customers *could* use before they actually provision systems.
+
+- This can be explicitly set with `perspective`: `system-type` (version independent) or `system-version` (for specific versions)
+- This is also referred to as [system-instance-unaware](#system-instance-unaware) information. They are identical across all [system instance](#system-instance) of the described [system type](#system-type) (and [system version](#system-version) when using `system-version` perspective).
+
+##### system-instance-unaware
+
+**system-instance-unaware** information is identical across all system instances of the described system type and system version.
+
+#### Dynamic Perspective
+
+The **dynamic perspective** describes a [system instance](#system-instance) at **run-time** and can therefore reflect how it is currently configured, customized or extended. This is also referred to as [system-instance-aware](#system-instance-aware).
+
+- This can be explicitly set with `perspective`: `system-instance`
+- This is also referred to as [system-instance-aware](#system-instance-aware) information. system-instance-aware information is allowed to be different between system instances of the same [system type](#system-type).
+
+##### system-instance-aware
+
+**system-instance-aware** information is allowed to be different between system instances of the same system type.
+
+#### ORD Resource
+
+ORD information can be categorized into resources and taxonomies:
+
+**ORD resource** information describes application and service [resources](#resource). Resources are consumable capabilities of the system (e.g. API resources, Event resources, etc.). ORD resource information MAY be [system-instance-aware](#system-instance-aware), depending on the implementation of the [system type](#system-type).
+
+#### ORD Taxonomy
+
+**ORD taxonomy** is used to categorize and structure [resources](#resource). Taxonomies span across [products](#product) and [system types](#system-type).
+
+- Some taxonomies are implemented as dedicated Entities (e.g. `Package`, `Product`, `Group` and `GroupType`) that can express additional information. They are defined by the [ORD providers](#ord-provider) in a decentralized manner.
+- Other taxonomies are provided via fixed enums (code lists) and are defined as part of ORD itself, e.g. tags.
+- Taxonomies are not a consumer contract and therefore do not offer the same stability guarantees and lifecycle management as ORD resources.
+
+#### ORD Behavior
+
+**ORD behavior** standardizes how [ORD information](#ord-information) is discovered, transported, and aggregated.
+
+#### System
+
+A **system** is sometimes used as a generic, imprecise term when no further distinctions are necessary. In most places, the specification uses more precise terms like [system type](#system-type), [system deployment](#system-deployment), [system version](#system-version), and [system instance](#system-instance).
+
+#### System Type
+
+A **system type** is the abstract type of an application or service from an operational perspective. It is also known as system role ([SAP CLD](https://support.sap.com/en/tools/software-logistics-tools/landscape-management-process/system-landscape-directory.html)). Within the specification it is also referred to as *application and service* for better readability.
+
+Since system type is an abstract concept, it is not concretely addressable. A [system deployment](#system-deployment) of a specific [system version](#system-version) and potentially a [system instance](#system-instance) needs to be created to have a concrete, addressable system.
+
+Please note that a system type is similar, but not necessarily identical to a [product](#product). System type is a technical concept, while product is a term for external communication and sales.
+
+#### System Deployment
+
+A **system deployment** is a concrete, addressable deployment of a [system type](#system-type) running a specific [system version](#system-version).
+
+A single system type can have multiple deployments, for example one per region or data center. Each deployment has at least one [base URL](#base-url) and serves as a container/host for [system instances](#system-instance) (tenants). If the system type supports tenant isolation (multi-tenancy), a system deployment may host multiple system instances.
+
+#### System Version
+
+A **system version** is a particular software version of a [system type](#system-type). It states the design-time version or release of a system and provides versioning for operational purposes. A [system deployment](#system-deployment) always runs a specific system version. All system instances of the same system version could have the same static metadata description.
+
+#### System Instance
+
+A **system instance** is a running, isolated instance of a [system type](#system-type), running in a [system deployment](#system-deployment) of a particular [system version](#system-version). It always refers to the *most specific* instance from a customer, account, and data isolation perspective.
+
+If the system type offers tenant isolation (multi-tenancy), system instance refers to a tenant. If there is no tenant isolation, there are two options: Either the isolation is achieved by having a dedicated [system deployment](#system-deployment) per tenant or system isolation does not matter. In those cases, system instance equals the system deployment.
+
+The term is also known as System (simplified public SAP communication). For internal SAP communication it is referred to as tenant ([SAP CLD](https://support.sap.com/en/tools/software-logistics-tools/landscape-management-process/system-landscape-directory.html)) if multi-tenancy is supported or system ([SAP CLD](https://support.sap.com/en/tools/software-logistics-tools/landscape-management-process/system-landscape-directory.html)) if not.
+
+A system instance can act as an [ORD Provider](#ord-provider).
+
+#### System Landscape
+
+A **system landscape** is a set of [system instances](#system-instance) that are explicitly combined together, for example via a shared zone of trust/connectivity, an account or a [namespace concept](#namespaces).
+
+#### Resource
+
+A **resource** is provided by or for a [system instance](#system-instance) for outside consumption and/or communication.
+
+#### Machine-Readable Resource
+
+A **machine-readable resource** is a [resource](#resource) that can be used for machine consumption and communication. For example, APIs and events. They are usually described through a [resource definition](#resource-definition) format.
+
+#### Human-Consumption Resource
+
+A **human-consumption resource** is a [resource](#resource) that is meant for human consumption, for example documentation.
+
+#### Resource Definition
+
+A **resource definition** is a machine-readable, structured document defining the inputs and outputs of a [machine-readable resource](#machine-readable-resource) in a standardized format. It is primarily designed for automated processing, not human consumption. See also [definition](https://webapi-discovery.github.io/rfcs/rfc0001.html#definitions) by the [W3 WebAPI Discovery Community Group](https://www.w3.org/community/web-api-discovery/).
+
+#### Product
+
+A **product** is understood as a software product: A non-versioned, high-level entity for structuring the software portfolio from a software logistics perspective. While [system type](#system-type) addresses the technical perspective, product is the term to use for customer-facing communication.
+
+#### Base URL
+
+A **base URL** is the consistent part of a [system deployment](#system-deployment) or [system instance](#system-instance) URL. From ORD perspective this is the base URL where the discovery starts and where the [ORD config endpoint](#ord-configuration-endpoint) location is relative to. In most cases the base URL consists of the URL protocol, domain name and (if necessary) the port, for example `https://example.com`. In rare cases, a relative path (e.g. including a tenant ID) might be included, for example `https://example.com/tenantA/`.
