@@ -2,3 +2,6 @@
 .omx/
 .claudian/sessions/
 .obsidian/workspace.json
+.obsidian/plugins/claudian/data.json
+.claude/
+ruvector.db
