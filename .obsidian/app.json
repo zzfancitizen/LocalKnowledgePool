@@ -4,5 +4,7 @@
     "landscape": true,
     "margin": "0",
     "downscalePercent": 50
-  }
+  },
+  "showInlineTitle": true,
+  "promptDelete": false
 }
