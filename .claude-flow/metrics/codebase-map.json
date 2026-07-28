@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-07-28T09:41:38.133Z",
+  "projectRoot": "C:\\Users\\I072179\\Documents\\LocalKnowledgePool",
+  "structure": {
+    "hasPackageJson": false,
+    "hasTsConfig": false,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1785231698133
+}

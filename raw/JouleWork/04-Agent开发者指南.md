@@ -21,19 +21,19 @@
 
 **核心工具/入口 URL：**
 
-| 用途 | URL |
-|---|---|
-| Standalone webclient（测试 + 实时日志/payload） | `https://sapdasintegdev.eu12.sapdas-dev.cloud.sap/webclient/standalone/da_kgs4pub_el_agents` |
-| Content Validator（响应格式校验） | `https://pages.github.tools.sap/I053631/space-agent-content-validator/` |
-| New EL Experience（端到端测试） | `https://sapdasintegdev.eu12.sapdas-dev.cloud.sap/new/spaces/?botName=da_kgs4pub_el_agents` |
-| 测试用 User IAS token | `https://sapdasintegdev.eu12.sapdas-dev.cloud.sap/destinations/DYN_TEST_AGENT_1/test-token` |
-| 参考 agent（geography PoC） | `https://github.tools.sap/fsm-codebasedagents/i821846-test-agent-1` |
-| Capabilities collector | `https://github.tools.sap/ux-agents/agent-capabilties-collector` |
-| Agent Gateway 文档 | `https://pages.github.tools.sap/AI/agent-gateway-documentation/` |
-| AGW onboarding Jira | `https://jira.tools.sap/browse/CMP-15763` |
-| ORD for AI Agents 规范 | `https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/ai-agents-and-protocols` |
-| Feature Discovery 用户故事模板 | `https://jira.tools.sap/browse/EL-1192` |
-| POC support channel | Teams：`System-Generated Spaces - POC Support` |
+| 用途                                      | URL                                                                                                                                |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Standalone webclient（测试 + 实时日志/payload） | `https://sapdasintegdev.eu12.sapdas-dev.cloud.sap/webclient/standalone/da_kgs4pub_el_agents`                                       |
+| Content Validator（响应格式校验）               | `https://pages.github.tools.sap/I053631/space-agent-content-validator/`                                                            |
+| New EL Experience（端到端测试）                | `https://sapdasintegdev.eu12.sapdas-dev.cloud.sap/new/spaces/?botName=da_kgs4pub_el_agents`                                        |
+| 测试用 User IAS token                      | `https://sapdasintegdev.eu12.sapdas-dev.cloud.sap/destinations/DYN_TEST_AGENT_1/test-token`                                        |
+| 参考 agent（geography PoC）                 | `https://github.tools.sap/fsm-codebasedagents/i821846-test-agent-1`                                                                |
+| Capabilities collector                  | `https://github.tools.sap/ux-agents/agent-capabilties-collector`                                                                   |
+| Agent Gateway 文档                        | `https://pages.github.tools.sap/AI/agent-gateway-documentation/`                                                                   |
+| AGW onboarding Jira                     | `https://jira.tools.sap/browse/CMP-15763`                                                                                          |
+| ORD for AI Agents 规范                    | `https://pages.github.tools.sap/CentralEngineering/open-resource-discovery-specification/spec-v1/concepts/ai-agents-and-protocols` |
+| Feature Discovery 用户故事模板                | `https://jira.tools.sap/browse/EL-1192`                                                                                            |
+| POC support channel                     | Teams：`System-Generated Spaces - POC Support`                                                                                      |
 
 > 在 support channel 提问前，先按以下步骤自查：1）用 standalone webclient 调用 agent 看 payload/日志；2）把 payload 贴进 validator 排查；3）成功后再用 New EL Experience 测试 space 创建。仍失败才发帖，需附：所用 bot、space ID、user、prompt、期望 vs 实际行为、webclient 执行日志。
 
